@@ -19,11 +19,239 @@ module.exports = function (router) {
         user.save(function (err) {
             if (err) {
                 console.log(err);
-                // res.send('Error');
+                res.send('Error');
                 res.json({success:false, message:'Invalid data!!!'});
             } else {
                 res.json({success:true, message:'User Created!!!'});
             }
+        });
+    });
+    // update-stylist
+    router.put('/update-stylist', function (req, res) {
+        var token = req.headers['x-access-token'];
+        res.json({success:true, message: 'Arrived'});
+        console.log(req.body);
+        var editStylist = req.body.email;
+        if (req.body.firstname){
+            var newFirstname = req.body.firstname;
+        }
+        if (req.body.lastname){
+            var newLastname = req.body.lastname;
+        }
+        if (req.body.description){
+            var newDescription = req.body.description;
+            console.log(newDescription);
+        }
+        User.findOne({email: req.body.email},function (err, mainUser) {
+           if(err){
+               throw err;
+           }
+           if(!mainUser){
+               res.json({success:false, message: 'No user found'});
+           }else{
+               // console.log(mainUser.firstname);
+               if(newFirstname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.firstname = newFirstname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+               if(newLastname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.lastname = newLastname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+               if(newFirstname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.firstname = newFirstname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+               if(newFirstname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.firstname = newFirstname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+               if(newFirstname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.firstname = newFirstname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+               if(newFirstname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.firstname = newFirstname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+               if(newFirstname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.firstname = newFirstname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+               if(newFirstname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.firstname = newFirstname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+               if(newFirstname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.firstname = newFirstname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+               if(newFirstname){
+                   User.findOne({ email: req.body.email }, function (err, user) {
+
+                       // console.log(user.firstname);
+                       if(!user){
+                           console.log('A');
+                       }else{
+                           user.firstname = newFirstname;
+                           // user.profile.description = newDescription;
+                           user.save(function (err) {
+                               if(err){
+                                   console.log('error at b');
+                               }
+                               else{
+                                   console.log('no error at b');
+                               }
+                           });
+                       }
+                   });
+               }
+
+           }
         });
     });
 
@@ -76,6 +304,23 @@ module.exports = function (router) {
             res.json({success:false, message: 'No token provided'})
         }
     });
+    // router.use('/update-stylist',function (req,res,next) {
+    //     var token = req.body.token || req.body.query || req.headers['x-access-token'];
+    //     if(token){
+    //         // verify token
+    //         jwt.verify(token, secret, function (err, decoded) {
+    //             if(err) {
+    //                 res.json({success:false, message:'Token Invalid'});
+    //             }else{
+    //                 req.decoded  =decoded;
+    //                 next();
+    //             }
+    //         });
+    //     }
+    //     else{
+    //         res.json({success:false, message: 'No token provided'})
+    //     }
+    // });
 
     router.post('/me', function (req,res) {
         res.send(req.decoded);

@@ -3,10 +3,17 @@
  */
 angular.module('userServices' , [])
 .factory('User', function ($http) {
-    userFactory = {};
+    var userFactory = {};
 
     userFactory.create = function (regData) {
-      return $http.post('/users', regData);
+        return $http.post('/users', regData);
+    };
+    userFactory.updateOne = function (updateData) {
+        return $http.put('/update-stylist', updateData);
+    };
+    // User.confirmPassword();
+    userFactory.confirmPassword = function (password) {
+
     };
     return userFactory;
 });

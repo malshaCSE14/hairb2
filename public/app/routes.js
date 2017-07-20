@@ -1,7 +1,7 @@
 /**
  * Created by malsha_h on 7/18/2017.
  */
-angular.module('appRoutes', ['ngRoute'])
+var app = angular.module('appRoutes', ['ngRoute'])
 .config( function ($routeProvider,$locationProvider) {
     $routeProvider
         .when('/',{
@@ -11,19 +11,25 @@ angular.module('appRoutes', ['ngRoute'])
             templateUrl : 'app/views/pages/about.html'
         })
         .when('/signin',{
-            templateUrl : 'app/views/pages/users/signin.html'
+            templateUrl : 'app/views/pages/users/signin.html',
+            authenticated : false
 
         })
         .when('/signup',{
             templateUrl : 'app/views/pages/users/signup.html',
             controller: 'regCtrl',
-            controllerAs: 'register'
+            controllerAs: 'register',
+            authenticated : false
         })
         .when('/stylist-profile-edit',{
-            templateUrl : 'app/views/pages/users/stylist_profile_edit.html'
+            templateUrl : 'app/views/pages/users/stylist_profile_edit.html',
+            controller: 'updateCtrl',
+            controllerAs: 'update',
+            authenticated : true
         })
         .when('/stylist-profile',{
-            templateUrl : 'app/views/pages/users/stylist_profile.html'
+            templateUrl : 'app/views/pages/users/stylist_profile.html',
+            authenticated : true
         })
         .otherwise({
             redirectTo:'/'
@@ -37,6 +43,19 @@ angular.module('appRoutes', ['ngRoute'])
 
 
 });
-
-
-// console.log('routes');
+app.run(['$rootScope', 'Auth', '$location',  function ($rootScope, Auth, $location) {
+    $rootScope.$on('$routeChangeStart', function (event, next ,current) {
+        if(next.$$route.authenticated === true){
+            if(!Auth.isLoggedIn()){
+                event.preventDefault();
+                $location.path('/');
+            }
+        }else if(next.$$route.authenticated === false){
+            if(Auth.isLoggedIn()){
+                event.preventDefault();
+                $location.path('/stylist-profile');
+            }
+            console.log('should not be authenticated');
+        }
+    })
+}]);
