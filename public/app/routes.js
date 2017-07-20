@@ -22,14 +22,21 @@ angular.module('appRoutes', ['ngRoute'])
         .when('/stylist-profile-edit',{
             templateUrl : 'app/views/pages/users/stylist_profile_edit.html'
         })
+        .when('/stylist-profile',{
+            templateUrl : 'app/views/pages/users/stylist_profile.html'
+        })
         .otherwise({
             redirectTo:'/'
         });
+
 
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false
     });
 
+
 });
+
+
 // console.log('routes');

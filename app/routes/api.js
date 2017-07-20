@@ -1,13 +1,16 @@
 /**
  * Created by malsha_h on 7/17/2017.
  */
-var User = require('../models/user');
+var User    = require('../models/user');
+var jwt     = require('jsonwebtoken');
+var secret  = 'supesecret';
+
 module.exports = function (router) {
     // user registration route
     //http://localhost:port/users
     router.post('/users',function (req,res) {
         var passwordHash = require('password-hash');
-        console.log(req.body);
+        // console.log(req.body);
         var user = new User();
         user.firstname = req.body.firstname;
         user.lastname = req.body.lastname;
@@ -23,6 +26,7 @@ module.exports = function (router) {
             }
         });
     });
+
     // user login route
     //http://localhost:8080/authenticate
     router.post('/authenticate', function (req, res) {
@@ -39,12 +43,42 @@ module.exports = function (router) {
                 if(!validPassword){
                     res.json({success:false, methods:'Invalid Password'});
                 }else {
-                    res.json({success:true, message:'User Authenticated'});
+                    var token = jwt.sign({
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        email : user.email
+                    },
+                        secret,
+                    {
+                        expiresIn: '24h'
+                    });
+                    res.json({success:true, message:'User Authenticated', token:token});
                 }
-
             }
             
         });
+    });
+    // middleware
+    router.use('/me',function (req,res,next) {
+        var token = req.body.token || req.body.query || req.headers['x-access-token'];
+        if(token){
+            // verify token
+            jwt.verify(token, secret, function (err, decoded) {
+                if(err) {
+                    res.json({success:false, message:'Token Invalid'});
+                }else{
+                    req.decoded  =decoded;
+                    next();
+                }
+            });
+        }
+        else{
+            res.json({success:false, message: 'No token provided'})
+        }
+    });
+
+    router.post('/me', function (req,res) {
+        res.send(req.decoded);
     });
     return router;
 };

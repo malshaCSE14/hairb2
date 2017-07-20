@@ -2,17 +2,40 @@
  * Created by malsha_h on 7/19/2017.
  */
 angular.module('mainController',['authServices'])
-    .controller('mainCtrl',function (Auth, $timeout, $location) {
+    .controller('mainCtrl',function (Auth, $timeout, $location, $rootScope) {
+         var app = this;
 
-        var app = this;
+         app.loadme  =false;
+         $rootScope.$on('$routeChangeStart', function () {
+             if(Auth.isLoggedIn()){
+                 console.log('User logged in');
+                 app.isLoggedIn = true;
+                 Auth.getUser().then(function (data) {
+                     app.firstname = data.data.firstname;
+                     app.lastname = data.data.lastname;
+                     app.loadme = true;
+                     // console.log(data.data.firstname);
+                 });
+             }else{
+                 console.log('not logged in');
+                 app.isLoggedIn = false;
+                 app.firstname = '';
+                 app.loadme = true;
+             }
+
+         });
+
+
+
         this.doLogin = function (loginData) {
 
             Auth.login(app.loginData).then(function (data) {
                 if(data.data.success){
                     app.notifyMsg = data.data.message;
                     $timeout(function () {
-                        $location.path('/stylist-profile-edit');
-                    },2000);
+                        $location.path('/stylist-profile');
+                        app.loginData ={};
+                    },500);
                     // $location.path('/')
 
                 }else{
@@ -20,6 +43,13 @@ angular.module('mainController',['authServices'])
                 }
             });
         };
+        this.logout =function () {
+            Auth.logout();
+            $timeout(function () {
+                $location.path('/');
+            },500);
+
+        }
     });
 
 

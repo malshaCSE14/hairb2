@@ -3,6 +3,7 @@
 
 <head>
     <base href="/">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +39,7 @@
 <![endif]-->
 </head>
 
-<body ng-app="userApp" ng-controller="mainCtrl as main">
+<body ng-app="userApp" ng-controller="mainCtrl as main" ng-show="main.loadme" ng-cloak>
     <div class="header">
         <div class="container">
             <div class="row">
@@ -55,8 +56,16 @@
 
                                 <li class="active"><a href="/" title="Home">Home</a></li>
                                 <li><a href="/about">About</a></li>
-                                <li><a href="/signin" title="Login">Sign In</a> </li>
-                                <li><a href="/signup" title="Register as a salon or stylist">Sign Up</a> </li>
+                                <li><a ng-show="!main.isLoggedIn" href="/signin" title="Login">Sign In</a> </li>
+                                <li><a ng-show="!main.isLoggedIn" href="/signup" title="Register as a salon or stylist">Sign Up</a> </li>
+
+                                <li class="has-sub"><a ng-show="main.isLoggedIn" href="#">{{main.firstname}}</a>
+                                    <ul>
+                                        <li><a href="/stylist-profile-edit">Edit Profile</a></li>
+                                        <li><a href="#" ng-click = "main.logout();">Logout</a></li>
+                                    </ul>
+                                </li>
+
                             </ul>
                         </div>
                     </div>

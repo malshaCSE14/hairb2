@@ -356,7 +356,7 @@ label { }
 /*--------------------------
     5.2 Navigations Regular
    ----------------------------*/
-.hero-section { padding-top: 135px; padding-bottom: 135px; background: linear-gradient(rgba(158, 120, 75, 0.5), rgba(158, 120, 75, 0.5)), rgba(158, 120, 75, 0.5) url(../images/hair-4.jpg) no-repeat center; background-size: cover; }
+.hero-section { padding-top: 135px; padding-bottom: 135px; background: linear-gradient(rgba(174, 132, 64, 0.7), rgba(170, 128, 70, 0.5)), rgba(170, 128, 70, 0.5) url(../images/hair-4.jpg) no-repeat center; background-size: cover; }
 /*.hero-section { padding-top: 135px; padding-bottom: 135px; background: linear-gradient(rgba(36, 39, 38, 0.5), rgba(36, 39, 38, 0.5)), rgba(36, 39, 38, 0.5) url(../images/hero-img.jpg) no-repeat center; background-size: cover; }*/
 .hero-caption { padding-top: 100px; padding-bottom: 100px; }
 .hero-title { font-size: 46px; color: #fff; line-height: 58px; font-weight: 600; margin-bottom: 30px; letter-spacing: -1px; }
@@ -877,4 +877,8 @@ opacity: .5; }
     margin: 0;
     width: auto;
     max-width: inherit;
+}
+.checkbox{
+    color: black;
+    font-weight: bold;
 }

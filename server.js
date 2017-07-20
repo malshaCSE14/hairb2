@@ -13,7 +13,6 @@ var appRoutes   = require('./app/routes/api')(router);
 var path        = require('path');
 // var User        = require('./app/models/user');
 
-
 app.use(morgan('dev'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -32,7 +31,10 @@ mongoose.connect('mongodb://localhost:27017/test',function (err) {
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/public/app/views/index.html'))
 });
-
+app.all('/*', function(req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode
+    res.sendFile('/public/app/views/index.html', { root: __dirname });
+});
 
 app.listen(port,function () {
     console.log('Running the server on port '+port);
