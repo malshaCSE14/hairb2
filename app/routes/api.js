@@ -27,11 +27,30 @@ module.exports = function (router) {
         });
     });
     // update-stylist
+    router.use('/update-stylist',function (req,res,next) {
+        var token = req.body.token || req.body.query || req.headers['x-access-token'];
+        if(token){
+            // verify token
+            jwt.verify(token, secret, function (err, decoded) {
+                if(err) {
+                    res.json({success:false, message:'Token Invalid'});
+                }else{
+                    req.decoded  =decoded;
+                    next();
+                }
+            });
+        }
+        else{
+            res.json({success:false, message: 'No token provided'})
+        }
+    });
+
     router.put('/update-stylist', function (req, res) {
-        var token = req.headers['x-access-token'];
-        res.json({success:true, message: 'Arrived'});
+
+        // var token = req.headers['x-access-token'];
+        // res.json({success:true, message: 'Arrived'});
         console.log(req.body);
-        var editStylist = req.body.email;
+        var useremail = req.decoded.email;
         if (req.body.firstname){
             var newFirstname = req.body.firstname;
         }
@@ -40,25 +59,204 @@ module.exports = function (router) {
         }
         if (req.body.description){
             var newDescription = req.body.description;
-            console.log(newDescription);
         }
-        User.findOne({email: req.body.email},function (err, mainUser) {
+        if (req.body.educatorset){
+            var educatorset = req.body.educatorset;
+        }
+        if (req.body.stylistset){
+            var stylistset = req.body.stylistset;
+        }
+        if (req.body.apperenticeset){
+            var apperenticeset = req.body.apperenticeset;
+        }
+        if (req.body.educatorrate){
+            var educatorrate = req.body.educatorrate;
+        }
+        if (req.body.stylistrate){
+            var stylistrate = req.body.stylistrate;
+        }
+        if (req.body.apperenticerate){
+            var apperenticerate = req.body.apperenticerate;
+        }
+        if (req.body.address){
+            var address = req.body.address;
+        }
+        if (req.body.city){
+            var city = req.body.city;
+        }
+        if (req.body.haircutting){
+            var haircutting = req.body.haircutting;
+        }
+        if (req.body.coloring){
+            var coloring = req.body.coloring;
+        }
+        if (req.body.rebonding){
+            var rebonding = req.body.rebonding;
+        }
+        if (req.body.hairrelaxing){
+            var hairrelaxing = req.body.hairrelaxing;
+        }
+        if (req.body.straightening){
+            var straightening = req.body.straightening;
+        }
+        if (req.body.hairstyling){
+            var hairstyling = req.body.hairstyling;
+        }
+        if (req.body.cleansing){
+            var cleansing = req.body.cleansing;
+        }
+        if (req.body.scalpmassage){
+            var scalpmassage = req.body.scalpmassage;
+        }
+        if (req.body.oiltreatments){
+            var oiltreatments = req.body.oiltreatments;
+        }
+        if (req.body.haircareadvising){
+            var haircareadvising = req.body.haircareadvising;
+        }
+        if (req.body.haircurling){
+            var haircurling = req.body.haircurling;
+        }
+        if (req.body.perming){
+            var perming = req.body.perming;
+        }
+
+        User.findOne({email: useremail},function (err, mainUser) {
            if(err){
                throw err;
            }
            if(!mainUser){
                res.json({success:false, message: 'No user found'});
-           }else{
-               // console.log(mainUser.firstname);
-               if(newFirstname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
+           }
+               else{
+               // if(newLastname){
+               //     User.findOne({ email: useremail }, function (err, user) {
+               //         if(!user){
+               //             console.log('A');
+               //         }else{
+               //             user.lastname = newLastname;
+               //             user.save(function (err) {
+               //                 if(err){
+               //                     console.log('error at b');
+               //                 }
+               //                 else{
+               //                     console.log('no error at b');
+               //                 }
+               //             });
+               //         }
+               //     });
+               // }
+               // if(newFirstname){
+               //     User.findOne({ email: useremail }, function (err, user) {
+               //         if(!user){
+               //             console.log('A');
+               //         }else{
+               //             user.firstname = newFirstname;
+               //             user.save(function (err) {
+               //                 if(err){
+               //                     console.log('error at b');
+               //                 }
+               //                 else{
+               //                     console.log('no error at b');
+               //                 }
+               //             });
+               //         }
+               //     });
+               // }
+               // if(newDescription){
+               //     User.findOne({ email: useremail }, function (err, user) {
+               //
+               //         // console.log(user.firstname);
+               //         if(!user){
+               //             console.log('A');
+               //         }else{
+               //             user.profile.description = newDescription;
+               //             user.save(function (err) {
+               //                 if(err){
+               //                     console.log('error at b');
+               //                 }
+               //                 else{
+               //                     console.log('no error at b');
+               //                 }
+               //             });
+               //         }
+               //     });
+               // }
+               //================================
+                   User.findOne({ email: useremail }, function (err, user) {
                        if(!user){
-                           console.log('A');
+                           console.log('No user found once again');
                        }else{
-                           user.firstname = newFirstname;
-                           // user.profile.description = newDescription;
+                           if(newFirstname){
+                               user.firstname = newFirstname;
+                           }
+                           if(newLastname){
+                               user.lastname = newLastname;
+                           }
+                           if(newDescription){
+                               user.profile.description = newDescription;
+                           }
+                           if(educatorset){
+                               user.profile.jobcategories.educator.isset = educatorset;
+                           }
+                           if(educatorrate){
+                               user.profile.jobcategories.educator.rate = educatorrate;
+                           }
+                           if(stylistset){
+                               user.profile.jobcategories.stylist.isset = stylistset;
+                           }
+                           if(stylistrate){
+                               user.profile.jobcategories.stylist.rate = stylistrate;
+                           }
+                           if(apperenticeset){
+                               user.profile.jobcategories.apperentice.isset = apperenticeset;
+                           }
+                           if(apperenticerate){
+                               user.profile.jobcategories.apperentice.rate = apperenticerate;
+                           }
+                           if(address){
+                               user.profile.address = address;
+                           }
+                           if(city){
+                               user.profile.city = city;
+                           }
+                           if(haircutting){
+                               user.profile.skills.haircutting= haircutting;
+                           }
+                           if(coloring){
+                               user.profile.skills.coloring = coloring;
+                           }
+                           if(rebonding){
+                               user.profile.skills.rebonding = rebonding;
+                           }
+                           if(hairrelaxing){
+                               user.profile.skills.hairrelaxing = hairrelaxing;
+                           }
+                           if(straightening){
+                               user.profile.skills.straightening = straightening;
+                           }
+                           if(hairstyling){
+                               user.profile.skills.hairstyling = hairstyling;
+                           }
+                           if(cleansing){
+                               user.profile.skills.cleansing = cleansing;
+                           }
+                           if(scalpmassage){
+                               user.profile.skills.scalpmassage = scalpmassage;
+                           }
+                           if(oiltreatments){
+                               user.profile.skills.oiltreatments = oiltreatments;
+                           }
+                           if(haircareadvising){
+                               user.profile.skills.haircareadvising = haircareadvising;
+                           }
+                           if(haircurling){
+                               user.profile.skills.haircurling = haircurling;
+                           }
+                           if(perming){
+                               user.profile.skills.perming = perming;
+                           }
+
                            user.save(function (err) {
                                if(err){
                                    console.log('error at b');
@@ -69,190 +267,10 @@ module.exports = function (router) {
                            });
                        }
                    });
-               }
-               if(newLastname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
-                       if(!user){
-                           console.log('A');
-                       }else{
-                           user.lastname = newLastname;
-                           // user.profile.description = newDescription;
-                           user.save(function (err) {
-                               if(err){
-                                   console.log('error at b');
-                               }
-                               else{
-                                   console.log('no error at b');
-                               }
-                           });
-                       }
-                   });
-               }
-               if(newFirstname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
-                       if(!user){
-                           console.log('A');
-                       }else{
-                           user.firstname = newFirstname;
-                           // user.profile.description = newDescription;
-                           user.save(function (err) {
-                               if(err){
-                                   console.log('error at b');
-                               }
-                               else{
-                                   console.log('no error at b');
-                               }
-                           });
-                       }
-                   });
-               }
-               if(newFirstname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
-                       if(!user){
-                           console.log('A');
-                       }else{
-                           user.firstname = newFirstname;
-                           // user.profile.description = newDescription;
-                           user.save(function (err) {
-                               if(err){
-                                   console.log('error at b');
-                               }
-                               else{
-                                   console.log('no error at b');
-                               }
-                           });
-                       }
-                   });
-               }
-               if(newFirstname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
-                       if(!user){
-                           console.log('A');
-                       }else{
-                           user.firstname = newFirstname;
-                           // user.profile.description = newDescription;
-                           user.save(function (err) {
-                               if(err){
-                                   console.log('error at b');
-                               }
-                               else{
-                                   console.log('no error at b');
-                               }
-                           });
-                       }
-                   });
-               }
-               if(newFirstname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
-                       if(!user){
-                           console.log('A');
-                       }else{
-                           user.firstname = newFirstname;
-                           // user.profile.description = newDescription;
-                           user.save(function (err) {
-                               if(err){
-                                   console.log('error at b');
-                               }
-                               else{
-                                   console.log('no error at b');
-                               }
-                           });
-                       }
-                   });
-               }
-               if(newFirstname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
-                       if(!user){
-                           console.log('A');
-                       }else{
-                           user.firstname = newFirstname;
-                           // user.profile.description = newDescription;
-                           user.save(function (err) {
-                               if(err){
-                                   console.log('error at b');
-                               }
-                               else{
-                                   console.log('no error at b');
-                               }
-                           });
-                       }
-                   });
-               }
-               if(newFirstname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
-                       if(!user){
-                           console.log('A');
-                       }else{
-                           user.firstname = newFirstname;
-                           // user.profile.description = newDescription;
-                           user.save(function (err) {
-                               if(err){
-                                   console.log('error at b');
-                               }
-                               else{
-                                   console.log('no error at b');
-                               }
-                           });
-                       }
-                   });
-               }
-               if(newFirstname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
-                       if(!user){
-                           console.log('A');
-                       }else{
-                           user.firstname = newFirstname;
-                           // user.profile.description = newDescription;
-                           user.save(function (err) {
-                               if(err){
-                                   console.log('error at b');
-                               }
-                               else{
-                                   console.log('no error at b');
-                               }
-                           });
-                       }
-                   });
-               }
-               if(newFirstname){
-                   User.findOne({ email: req.body.email }, function (err, user) {
-
-                       // console.log(user.firstname);
-                       if(!user){
-                           console.log('A');
-                       }else{
-                           user.firstname = newFirstname;
-                           // user.profile.description = newDescription;
-                           user.save(function (err) {
-                               if(err){
-                                   console.log('error at b');
-                               }
-                               else{
-                                   console.log('no error at b');
-                               }
-                           });
-                       }
-                   });
-               }
-
+               res.json({success:true, message: 'Profile Updated'});
            }
         });
+        // res.send(req.decoded.email);
     });
 
     // user login route
@@ -304,23 +322,6 @@ module.exports = function (router) {
             res.json({success:false, message: 'No token provided'})
         }
     });
-    // router.use('/update-stylist',function (req,res,next) {
-    //     var token = req.body.token || req.body.query || req.headers['x-access-token'];
-    //     if(token){
-    //         // verify token
-    //         jwt.verify(token, secret, function (err, decoded) {
-    //             if(err) {
-    //                 res.json({success:false, message:'Token Invalid'});
-    //             }else{
-    //                 req.decoded  =decoded;
-    //                 next();
-    //             }
-    //         });
-    //     }
-    //     else{
-    //         res.json({success:false, message: 'No token provided'})
-    //     }
-    // });
 
     router.post('/me', function (req,res) {
         res.send(req.decoded);

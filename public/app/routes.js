@@ -10,6 +10,9 @@ var app = angular.module('appRoutes', ['ngRoute'])
         .when('/about',{
             templateUrl : 'app/views/pages/about.html'
         })
+        .when('/search',{
+            templateUrl : 'app/views/pages/users/search.html'
+        })
         .when('/signin',{
             templateUrl : 'app/views/pages/users/signin.html',
             authenticated : false

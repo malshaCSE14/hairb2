@@ -13,9 +13,14 @@ angular.module('mainController',['authServices'])
                  Auth.getUser().then(function (data) {
                      app.firstname = data.data.firstname;
                      app.lastname = data.data.lastname;
+                     app.address = data.data.address;
                      app.loadme = true;
                      // console.log(data.data.firstname);
                  });
+                 // Auth.getUserToUpdate().then(function (data) {
+                 //     app.email = data.data.email;
+                 //     app.loadme = true;
+                 // });
              }else{
                  console.log('not logged in');
                  app.isLoggedIn = false;
