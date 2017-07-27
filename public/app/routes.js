@@ -13,10 +13,12 @@ var app = angular.module('appRoutes', ['ngRoute'])
         .when('/search',{
             templateUrl : 'app/views/pages/users/search.html'
         })
+        .when('/welcome', {
+            templateUrl : 'app/views/pages/users/welcome_signin.html'
+        })
         .when('/signin',{
             templateUrl : 'app/views/pages/users/signin.html',
             authenticated : false
-
         })
         .when('/signup',{
             templateUrl : 'app/views/pages/users/signup.html',

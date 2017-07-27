@@ -9,7 +9,7 @@ angular.module('userControllers', ['userServices'])
             if(data.data.success){
                 app.notifyMsg = data.data.message;
                 $timeout(function () {
-                    $location.path('/');
+                    $location.path('/welcome');
                 },500);
                 // $location.path('/')
 

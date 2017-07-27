@@ -9,7 +9,8 @@ var mongoose    = require('mongoose');
 var bodyParser  = require('body-parser');
 var assert      = require('assert');
 var router      = express.Router();
-var appRoutes   = require('./app/routes/api')(router);
+var appRoutes = require('./app/routes/api').route(router);
+// var appRoutes   = require('./app/routes/api')(router);
 var path        = require('path');
 // var User        = require('./app/models/user');
 
