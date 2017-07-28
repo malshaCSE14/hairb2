@@ -1,0 +1,152 @@
+<div class="page-header">
+    <div class="hero-section">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+                            <div class="widget widget-contact" style="padding: 70px;">
+
+                                <!-- widget search -->
+                                <h3 class="widget-title" >Stylist Profile</h3>
+                                <!--<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">-->
+
+                                <!--</div>-->
+                                <h1>{{main.firstname +" "+ main.lastname}}</h1>
+                                <a href="index.html"><img src="assets/images/profileDefault.png" alt=""></a>
+
+                                <form id="bootstrapTagsInputForm" method="post" class="form-horizontal"  ng-submit="createStylist.newStylistProfile(createData);">
+
+                                    <div class="row">
+                                        <!--job categories-->
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="Subject">Job Categories</label>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="col-md-10">
+                                                <div class="col-md-4 checkbox">
+                                                    <input type="checkbox" ng-model="createStylist.createData.educatorset" name="opt" id="opt1" value="Y" onclick="check()"> Educator
+                                                </div><div class="col-md-8 checkbox">
+                                                Rate:  $  <input type="number" name="txt" ng-model="createStylist.createData.educatorrate"  disabled="disabled" id="txt1">
+                                            </div>
+
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="col-md-4 checkbox">
+                                                    <input type="checkbox"  ng-model="createStylist.createData.stylistset"  name="opt" id="opt2" value="Y" onclick="check()"> Stylist
+                                                </div><div class="col-md-8 checkbox">
+                                                Rate:  $  <input type="number" name="txt" ng-model="createStylist.createData.stylistrate" disabled="disabled" id="txt2">
+                                            </div>
+
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="col-md-4 checkbox">
+                                                    <input type="checkbox"  ng-model="createStylist.createData.apprenticeset"  name="opt" id="opt3" value="Y" onclick="check()"> Apprentice
+                                                </div><div class="col-md-8 checkbox">
+                                                Rate:  $  <input type="number" name="txt" ng-model="createStylist.createData.apprenticerate"   disabled="disabled" id="txt3">
+                                            </div>
+
+                                            </div>
+                                        </div>
+                                        <!--description-->
+                                        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+                                        <!--<div class="form-group">-->
+                                        <!--<label class="control-label" for="textarea">Description</label>-->
+                                        <!--<textarea class="form-control" ng-model="update.updateData.description"  id="textarea" name="textarea" rows="6" placeholder=""></textarea>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <div class="col-md-12">
+                                            <!--<div class="form-group">-->
+                                            <label class="control-label" for="textarea">Description</label>
+                                            <textarea class="form-control" ng-model="createStylist.createData.description" id="textarea" name="textarea" rows="6" placeholder="can't edit"></textarea>
+                                            <!--</div>-->
+                                        </div>
+
+                                        <!--address-->
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="address">address</label>
+                                            <input type="text" name="address" ng-model="createStylist.createData.address"  id="address" placeholder="{{main.address}}" class="form-control">
+                                        </div>
+                                        <!--city-->
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="city">city</label>
+                                            <select class="form-control" ng-model="createStylist.createData.city" id="city">
+                                                <option value="Sydney">Sydney</option>
+                                                <option value="Sydney">Sydney</option>
+                                                <option value="Perth">Perth</option>
+                                                <option value="Brisbane">Brisbane</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="Subject">Skils</label>
+
+                                        </div>
+
+                                        <div class="col-md-12">
+
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.haircutting"  value="">Hair Cutting</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.coloring" value="">Coloring</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.rebonding" value="">Rebonding</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.hairrelaxing" value="">Hair relaxing</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.straightening" value="">Straightening</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.hairstyling" value="">Hair Styling</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.cleansing" value="">Cleansing</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.scalpmassage" value="">Scalp massage</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.oiltreatments" value="">Oil treatments</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.haircareadvising" value="">Haircare Advising</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.haircurling" value="">Hair Curling</label>
+                                            </div>
+                                            <div class="col-md-5 checkbox">
+                                                <label><input type="checkbox" ng-model="createStylist.createData.perming"value="">Perming</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button id="singlebutton" name="singlebutton" class="btn btn-default">Create</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+

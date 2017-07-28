@@ -1,13 +1,13 @@
 
 <div class="page-header">
-    <div class="hero-section">
+    <div class="hero-section" >
 
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="widget widget-contact">
                         <h1 class="widget-title" >Search Stylist</h1>
-                        <form id="bootstrapTagsInputForm" method="post" class="form-horizontal">
+                        <form id="bootstrapTagsInputForm" method="post" class="form-horizontal" ng-submit="search.searchStylist(searchData);">
 
                             <div class="row">
                                 <!--categories-->
@@ -18,73 +18,55 @@
                                 <div class="col-md-12">
                                     <div class="col-md-10">
                                         <div class="col-md-4 checkbox">
-                                            <input type="checkbox"  name="opt" id="opt1" value="Y" onclick="check()"> Educator
+                                            <input ng-model="search.searchData.educatorset" type="checkbox"  name="opt" id="opt1" value="Y" onclick="check()"> Educator
                                         </div><div class="col-md-8 checkbox">
                                     </div>
 
                                     </div>
                                     <div class="col-md-10">
                                         <div class="col-md-4 checkbox">
-                                            <input type="checkbox"  name="opt" id="opt2" value="Y" onclick="check()"> Stylist
+                                            <input ng-model="search.searchData.stylistset" type="checkbox"  name="opt" id="opt2" value="Y" onclick="check()"> Stylist
                                         </div><div class="col-md-8 checkbox">
                                     </div>
 
                                     </div>
                                     <div class="col-md-10">
                                         <div class="col-md-4 checkbox">
-                                            <input type="checkbox"  name="opt" id="opt3" value="Y" onclick="check()"> Apprentice
+                                            <input ng-model="search.searchData.apprenticeset" type="checkbox"  name="opt" id="opt3" value="Y" onclick="check()"> Apprentice
                                         </div><div class="col-md-8 checkbox">
                                     </div>
                                     </div>
-
-
                                 </div>
                                 <!--daily rate-->
                                 <div class="col-md-6">
                                     <label class="control-label" for="fname">Min Price</label>
-                                    <input type="number" name="name" id="minprice" placeholder="" class="form-control">
+                                    <input ng-model="search.searchData.minprice" type="number" name="name" id="minprice" placeholder="" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="control-label" for="fname">Max Price</label>
-                                    <input type="number" name="name" id="maxprice" placeholder="" class="form-control">
+                                    <input ng-model="search.searchData.maxprice" type="number" name="name" id="maxprice" placeholder="" class="form-control">
                                 </div>
-
-
-                                <!--rating-->
-                                <!--<div class="container">-->
-                                    <!--<div class="row">-->
-                                        <!--<div class="col-lg-12">-->
-                                            <!--<div class="star-rating">-->
-                                                <!--<span class="fa fa-star-o" data-rating="1"></span>-->
-                                                <!--<span class="fa fa-star-o" data-rating="2"></span>-->
-                                                <!--<span class="fa fa-star-o" data-rating="3"></span>-->
-                                                <!--<span class="fa fa-star-o" data-rating="4"></span>-->
-                                                <!--<span class="fa fa-star-o" data-rating="5"></span>-->
-                                                <!--<input type="hidden" name="whatever1" class="rating-value" value="2.56">-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
                                 <div class="col-md-12">
                                     <label class="control-label" for="rating">Rating</label>
-                                    <select class="form-control" id="rating">
+                                    <select class="form-control" ng-model="search.searchData.rating" id="rating">
+                                        <option value="Any">Any</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
-
                                     </select>
                                 </div>
 
                                 <!--city-->
                                 <div class="col-md-12">
-                                    <label class="control-label" for="city">city</label>
+                                    <label class="control-label" ng-model="search.searchData.city" for="city">city</label>
                                     <select class="form-control" id="city">
-                                        <option>Sydney</option>
-                                        <option>Melbourne</option>
-                                        <option>Perth</option>
-                                        <option>Brisbane</option>
+                                        <option value="Any">Any</option>
+                                        <option value="Sydney">Sydney</option>
+                                        <option value="Melbourne">Melbourne</option>
+                                        <option value="Perth">Perth</option>
+                                        <option value="Brisbane">Brisbane</option>
                                     </select>
                                 </div>
                                 <!--availability-->
@@ -136,7 +118,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button id="singlebutton" name="singlebutton" class="btn btn-default">Find</button>
+                                        <button id="singlebutton" name="singlebutton" class="btn btn-default">Search</button>
                                     </div>
                                 </div>
 
@@ -154,12 +136,12 @@
                                     <div class="post-block">
                                         <div class="row ">
                                             <!-- post block -->
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="post-img">
                                                     <a href="index.html"><img src="assets/images/profileDefault.png" alt=""></a>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <div class="post-content">
                                                     <h2><a href="#" class="title" target="_blank">Stylist 1</a></h2>
                                                     <p class="meta"> <span class=""> [Rate]</span> </p>
@@ -167,6 +149,7 @@
                                                     <p class="meta"><span class="meta-author">[Categories]</span></p>
                                                     <p>[description]</p>
                                                     <a href="#" class="btn btn-default">Book Now</a> </div>
+                                                    <a href="#" class="btn btn-default">Profile</a> </div>
                                             </div>
                                         </div>
                                         <!-- /.post block -->

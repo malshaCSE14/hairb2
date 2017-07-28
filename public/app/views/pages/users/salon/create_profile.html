@@ -1,0 +1,73 @@
+<div class="page-header">
+    <div class="hero-section">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+                            <div class="widget widget-contact" style="padding: 70px;">
+
+                                <h3 class="widget-title" >Salon Profile</h3>
+
+                                <h1>{{main.firstname +" "+ main.lastname}}</h1>
+                                <a href="index.html"><img src="assets/images/profileDefault.png" alt=""></a>
+
+                                <form id="bootstrapTagsInputForm" method="post" class="form-horizontal"  ng-submit="createSalon.newSalonProfile(createData);">
+
+                                    <div class="row">
+                                        <!--salon name-->
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="name">Salon Name</label>
+                                            <input type="text" ng-model="createSalon.createData.name" name="name" id="name" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <!--<div class="form-group">-->
+                                            <label class="control-label" for="textarea">Description</label>
+                                            <textarea class="form-control" ng-model="createSalon.createData.description" id="textarea" name="textarea" rows="6" placeholder="can't edit"></textarea>
+                                            <!--</div>-->
+                                        </div>
+
+                                        <!--address-->
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="address">address</label>
+                                            <input type="text" name="address" ng-model="createSalon.createData.address"  id="address" placeholder="{{main.address}}" class="form-control">
+                                        </div>
+                                        <!--city-->
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="city">city</label>
+                                            <select class="form-control" ng-model="createSalon.createData.city" id="city">
+                                                <option value="Sydney">Sydney</option>
+                                                <option value="Sydney">Sydney</option>
+                                                <option value="Perth">Perth</option>
+                                                <option value="Brisbane">Brisbane</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button id="singlebutton" name="singlebutton" class="btn btn-default">Create</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+

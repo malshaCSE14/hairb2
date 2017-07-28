@@ -2,11 +2,17 @@
     <div class="hero-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h1 class="hero-title">Create your own profile</h1>
                     <p class="hero-text"><strong>Let the world find you.. Explore the world more..</strong> </p>
-                    <a href="#" class="btn btn-default">Stylist Account</a>
-                    <a href="#" class="btn btn-default">Salon Account</a> </div>
+                    <form action="">
+                        <a href="/create-stylist-profile" ng-submit="main.doLogin(loginData);" class="btn btn-default">New Stylist Profile</a>
+                    </form>
+                    <form action="">
+                        <a href="/create-salon-profile" class="btn btn-default">New Salon Profile</a> </div>
+                    </form>
+
+
             </div>
         </div>
     </div>

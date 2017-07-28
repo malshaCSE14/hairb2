@@ -11,10 +11,14 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl : 'app/views/pages/about.html'
         })
         .when('/search',{
-            templateUrl : 'app/views/pages/users/search.html'
+            templateUrl : 'app/views/pages/users/salon/search.html',
+            controller: 'searchCtrl',
+            controllerAs: 'search'
         })
         .when('/welcome', {
-            templateUrl : 'app/views/pages/users/welcome_signin.html'
+            templateUrl : 'app/views/pages/users/welcome_signin.html',
+            controller: 'emailCtrl',
+            controllerAs: 'email'
         })
         .when('/signin',{
             templateUrl : 'app/views/pages/users/signin.html',
@@ -26,14 +30,39 @@ var app = angular.module('appRoutes', ['ngRoute'])
             controllerAs: 'register',
             authenticated : false
         })
+        .when('/edit-user-account',{
+            templateUrl : 'app/views/pages/users/edit_account.html',
+            controller: 'updateUserCtrl',
+            controllerAs: 'updateUser',
+            // authenticated : true
+        })
+        .when('/create-salon-profile', {
+            templateUrl : 'app/views/pages/users/salon/create_profile.html',
+            controller: 'createSalonCtrl',
+            controllerAs: 'createSalon',
+            // authenticated : true
+
+        })
+        .when('/edit-salon-profile', {
+            templateUrl : 'app/views/pages/users/salon/edit_profile.html',
+            controller: 'updateSalonCtrl',
+            controllerAs: 'updateSalon',
+            // authenticated : true
+        })
+        .when('/create-stylist-profile', {
+            templateUrl : 'app/views/pages/users/stylist/create_profile.html',
+            controller: 'createStylistCtrl',
+            controllerAs: 'createStylist',
+            authenticated : true
+        })
         .when('/stylist-profile-edit',{
-            templateUrl : 'app/views/pages/users/stylist_profile_edit.html',
+            templateUrl : 'app/views/pages/users/stylist/edit_profile.html',
             controller: 'updateCtrl',
             controllerAs: 'update',
             authenticated : true
         })
         .when('/stylist-profile',{
-            templateUrl : 'app/views/pages/users/stylist_profile.html',
+            templateUrl : 'app/views/pages/users/stylist/profile.html',
             authenticated : true
         })
         .otherwise({

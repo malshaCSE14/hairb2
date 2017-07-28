@@ -12,7 +12,9 @@ var userSchema = new Schema({
     lastname: String,
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    profile : {
+    // active: {type:Boolean, required:true, default:false },
+    // temporarytoken : {type: String, required:true },
+    profile : { //stylist profile
         description : {type: String},
         jobcategories: {
             educator : {
@@ -46,7 +48,15 @@ var userSchema = new Schema({
             perming : {type : Boolean}
         }
 
-    }
+    },
+    salonProfiles : [
+        {
+            name: {type: String},
+            description : {type: String},
+            address: {type: String},
+            city : {type: String}
+        }
+    ]
 });
 // userSchema.plugin(titlize, {
 //     paths: [ 'firstname']

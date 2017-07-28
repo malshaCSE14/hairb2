@@ -140,7 +140,7 @@ label { }
 /*-----------------------------------
     3. Buttons 
 -----------------------------------*/
-.btn { float: right; margin: 30px; margin-bottom: 10px; display: inline-block; padding: 14px 30px;font-size: 13px; font-weight: 800;
+.btn { float: right; margin: 20px; margin-bottom: 10px; display: inline-block; padding: 14px 30px;font-size: 13px; font-weight: 800;
     letter-spacing: 1px; line-height: 1.42857143; text-align: center; border: none; 
     text-transform: uppercase; border-radius: 100px;font-family: 'Montserrat', sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;}
 .btn-default { color: #fff; background-color: #aa9144; }
@@ -590,7 +590,7 @@ address { margin-bottom: 20px; font-style: normal; line-height: 1.42857143; }
 /*-- use for thumbnail --*/
 .post-holder { position: relative; margin-bottom: 30px; }
 /*-- for single post page --*/
-.post-img { position: relative; height: 250px; width: 250px; }
+.post-img { position: relative; height: auto; width: auto; }
 .post-img img{border-radius: 10px; width: 100%;}
 .post-title { }
 .post-content {padding-top: 40px; padding-right: 40px;}

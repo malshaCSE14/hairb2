@@ -17,10 +17,6 @@ angular.module('mainController',['authServices'])
                      app.loadme = true;
                      // console.log(data.data.firstname);
                  });
-                 // Auth.getUserToUpdate().then(function (data) {
-                 //     app.email = data.data.email;
-                 //     app.loadme = true;
-                 // });
              }else{
                  console.log('not logged in');
                  app.isLoggedIn = false;
@@ -33,7 +29,6 @@ angular.module('mainController',['authServices'])
 
 
         this.doLogin = function (loginData) {
-
             Auth.login(app.loginData).then(function (data) {
                 if(data.data.success){
                     app.notifyMsg = data.data.message;

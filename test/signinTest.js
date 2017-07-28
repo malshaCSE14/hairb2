@@ -69,6 +69,26 @@ describe('Post dummy user', function () {
             assert.equal(statusStub.calledWith(200), true);
             // assert.equal(result, 'Called');
         } );
+        it('User with Correct First name and Last name', async function () {
+            const request = {
+                body:{
+                    email : 'test@test.com',
+                    password : 'testPassword'
+                }
+            };
+            let statusStub = sinon.stub().returnsThis();
+            let spyStub = sinon.spy();
+            let response = {
+                status:statusStub,
+                json : spyStub
+            };
+            var result = await users.loginUser(request,response);
+            let firstCall = response.json.args[0][0];
+            // console.log(firstCall);
+            expect(firstCall).to.have.property('firstname').equal('TestFirstname');
+            expect(firstCall).to.have.property('lastname').equal('TestLastname');
+            // assert.equal(statusStub.calledWith(400), true);
+        } );
     });
     describe('User not authenticated', function () {
         it('Wrong password', async function () {
@@ -90,6 +110,39 @@ describe('Post dummy user', function () {
             assert.equal(statusStub.calledWith(401), true);
             // assert.equal(result, 'Called');
         } );
+
+        it('Incorrect email', async function () {
+            const request = {
+                body:{
+                    email : 'wrong@test.com',
+                    password : 'wrongPassword'
+                }
+            };
+            let statusStub = sinon.stub().returnsThis();
+            let spyStub = sinon.spy();
+            let response = {
+                status:statusStub,
+                json : spyStub
+            };
+            var result = await users.loginUser(request,response);
+            assert.equal(statusStub.calledWith(400), true);
+        } );
+        it('Password not Provided', async function () {
+            const request = {
+                body:{
+                    email : 'test@test.com'
+                }
+            };
+            let statusStub = sinon.stub().returnsThis();
+            let spyStub = sinon.spy();
+            let response = {
+                status:statusStub,
+                json : spyStub
+            };
+            var result = await users.loginUser(request,response);
+            assert.equal(statusStub.calledWith(400), true);
+        } );
+
     });
     after(function (done) {
         User.remove({}, function (err) {
