@@ -25,9 +25,6 @@ angular.module('mainController',['authServices'])
              }
 
          });
-
-
-
         this.doLogin = function (loginData) {
             Auth.login(app.loginData).then(function (data) {
                 if(data.data.success){

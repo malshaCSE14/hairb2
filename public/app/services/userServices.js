@@ -6,7 +6,9 @@ angular.module('userServices' , [])
     var userFactory = {};
     //search stylist
     userFactory.search = function (searchData) {
-        return $http.get('/api-search', searchData)
+        return $http.post('/api-search', searchData).then(function (data) {
+            return data;
+        });
     };
     //==cretae user account
     userFactory.create = function (regData) {
@@ -16,6 +18,10 @@ angular.module('userServices' , [])
     //update-user account
     userFactory.updateAccount = function (updateData) {
         return $http.put('/update-user',updateData);
+    };
+    //get stylist profile
+    userFactory.getStylistProfile = function (id) {
+        return $http.get('/api-stylist-profile'+ id);
     };
 
     //create-stylist-profile

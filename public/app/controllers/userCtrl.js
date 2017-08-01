@@ -26,7 +26,9 @@ angular.module('userControllers', ['userServices'])
         this.searchStylist = function (searchData) {
             User.search(app.searchData).then(function (data) {
                 if(data.data.success){
-                    app.notifyMsg = data.data.message;
+                    // app.notifyMsg = data.data.message;
+                    app.result = data.data.result;
+                    app.resultlength = data.data.result.length;
                     $timeout(function () {
                         $location.path('/search');
                     },500);
@@ -116,6 +118,18 @@ angular.module('userControllers', ['userServices'])
                 }
             })
         }
+    })
+// getStylistProfile
+    .controller('stylistProfile', function ($http, $location,$timeout, User) {
+        var app = this;
+        this.getStylistProfile(app.id).then(function (data) {
+            if(data.data.success){
+                $timeout(function () {
+                    $location.path('/stylist-profile');
+                },500);
+            }else{
+            }
+        })
     })
 
 ;

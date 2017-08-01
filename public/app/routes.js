@@ -7,6 +7,9 @@ var app = angular.module('appRoutes', ['ngRoute'])
         .when('/',{
             templateUrl : 'app/views/pages/home.html'
         })
+        .when('/book-stylist', {
+            templateUrl : 'app/views/pages/users/salon/book_stylist.html'
+        })
         .when('/about',{
             templateUrl : 'app/views/pages/about.html'
         })
@@ -63,6 +66,8 @@ var app = angular.module('appRoutes', ['ngRoute'])
         })
         .when('/stylist-profile',{
             templateUrl : 'app/views/pages/users/stylist/profile.html',
+            controller: 'stylistProfile',
+            controllerAs: 'stylistProfile',
             authenticated : true
         })
         .otherwise({

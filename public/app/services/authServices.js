@@ -27,15 +27,6 @@ angular.module('authServices' , [])
                 $q.reject({message: 'User has no token'});
             }
         };
-        // Auth.getUserToUpdate
-        // authFactory.getUserToUpdate = function () {
-        //     if(AuthToken.getToken()){
-        //         return $http.put('/update-stylist');
-        //     }else{
-        //         $q.reject({message: 'User has no token'});
-        //     }
-        // };
-        // Auth.logout();
         authFactory.logout = function () {
             AuthToken.setToken();
         };

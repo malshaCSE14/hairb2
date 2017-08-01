@@ -60,8 +60,8 @@
 
                                 <!--city-->
                                 <div class="col-md-12">
-                                    <label class="control-label" ng-model="search.searchData.city" for="city">city</label>
-                                    <select class="form-control" id="city">
+                                    <label class="control-label"  for="city">city</label>
+                                    <select ng-model="search.searchData.city" class="form-control" id="city">
                                         <option value="Any">Any</option>
                                         <option value="Sydney">Sydney</option>
                                         <option value="Melbourne">Melbourne</option>
@@ -80,40 +80,40 @@
                                 <div class="col-md-12">
 
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Hair Cutting</label>
+                                        <label><input ng-model="search.searchData.haircutting" type="checkbox" value="">Hair Cutting</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Coloring</label>
+                                        <label><input ng-model="search.searchData.coloring" type="checkbox" value="">Coloring</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Rebonding</label>
+                                        <label><input ng-model="search.searchData.rebonding" type="checkbox" value="">Rebonding</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Hair relaxing</label>
+                                        <label><input ng-model="search.searchData.hairrelaxing" type="checkbox" value="">Hair relaxing</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Straightening</label>
+                                        <label><input ng-model="search.searchData.straightening" type="checkbox" value="">Straightening</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Hair Styling</label>
+                                        <label><input ng-model="search.searchData.hairstyling" type="checkbox" value="">Hair Styling</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Cleansing</label>
+                                        <label><input ng-model="search.searchData.cleansing" type="checkbox" value="">Cleansing</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Scalp massage</label>
+                                        <label><input ng-model="search.searchData.scalpmassage" type="checkbox" value="">Scalp massage</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Oil treatments</label>
+                                        <label><input ng-model="search.searchData.oiltreatments" type="checkbox" value="">Oil treatments</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Haircare Advising</label>
+                                        <label><input ng-model="search.searchData.haircareadvising" type="checkbox" value="">Haircare Advising</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Hair Curling</label>
+                                        <label><input ng-model="search.searchData.haircurling" type="checkbox" value="">Hair Curling</label>
                                     </div>
                                     <div class="col-md-8 checkbox">
-                                        <label><input type="checkbox" value="">Perming</label>
+                                        <label><input ng-model="search.searchData.perming" type="checkbox" value="">Perming</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -142,14 +142,20 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
+
                                                 <div class="post-content">
-                                                    <h2><a href="#" class="title" target="_blank">Stylist 1</a></h2>
-                                                    <p class="meta"> <span class=""> [Rate]</span> </p>
+                                                    <!--{{search.resultlength}}-->
+
+                                                    <h2><a href="#" class="title" target="_blank">{{search.result[0].firstname}}</a></h2>
+                                                    <p class="meta"> <span class=""></span> </p>
                                                     <p class="meta"> <span class="meta-comment">[Rating]</a></span></p>
                                                     <p class="meta"><span class="meta-author">[Categories]</span></p>
-                                                    <p>[description]</p>
-                                                    <a href="#" class="btn btn-default">Book Now</a> </div>
-                                                    <a href="#" class="btn btn-default">Profile</a> </div>
+                                                    <p>Description: {{search.result[0].profile.description}}</p>
+                                                    <a href="/book-stylist" class="btn btn-default">Book Now</a>
+                                                    <a href="#" class="btn btn-default">Profile</a>
+                                                </div>
+
+                                            </div>
                                             </div>
                                         </div>
                                         <!-- /.post block -->
