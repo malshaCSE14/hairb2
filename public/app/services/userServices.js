@@ -21,7 +21,7 @@ angular.module('userServices' , [])
     };
     //get stylist profile
     userFactory.getStylistProfile = function (id) {
-        return $http.get('/api-stylist-profile'+ id);
+        return $http.get('/api-stylist-profile/'+id);
     };
 
     //create-stylist-profile

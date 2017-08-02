@@ -143,17 +143,29 @@
                                             </div>
                                             <div class="col-md-8">
 
-                                                <div class="post-content">
-                                                    <!--{{search.resultlength}}-->
+                                                    <div class="post-content">
+                                                        <!--{{search.resultlength}}-->
 
-                                                    <h2><a href="#" class="title" target="_blank">{{search.result[0].firstname}}</a></h2>
-                                                    <p class="meta"> <span class=""></span> </p>
-                                                    <p class="meta"> <span class="meta-comment">[Rating]</a></span></p>
-                                                    <p class="meta"><span class="meta-author">[Categories]</span></p>
-                                                    <p>Description: {{search.result[0].profile.description}}</p>
-                                                    <a href="/book-stylist" class="btn btn-default">Book Now</a>
-                                                    <a href="#" class="btn btn-default">Profile</a>
-                                                </div>
+                                                        <h2><a href="#" class="title" target="_blank">{{search.result[0].firstname}}</a></h2>
+                                                        <p class="meta"> <span class=""></span> </p>
+                                                        <p class="meta"> <span class="meta-comment">[Rating]</a></span></p>
+                                                        <p class="meta"><span class="meta-author">id: {{search.result[0]._id}}</span></p>
+                                                        <p>Description: {{search.result[0].profile.description}}</p>
+                                                        <form>
+                                                            <a href="/book-stylist" class="btn btn-default">Book Now</a>
+                                                        </form>
+                                                        <!--<form method="get" ng-submit="stylistProfile.getStylist(profileData);" >-->
+                                                            <input type="text" ng-model="stylistProfile.profileData.id" value="59708C362F179F1558DBB208">
+                                                            <a href="/stylist-public-profile/{{search.result[0]._id}}" class="btn btn-default">Profile</a>
+                                                        <!--{{search.result[0]._id}}-->
+                                                        <!--'597EDD861DED9A23B06014FD'    -->
+                                                        <!--value="59708C362F179F1558DBB208"-->
+                                                            <!--<button id="profilebutton" name="profilebutton" class="btn btn-default">Profile</button>-->
+                                                        <!--</form>-->
+
+                                                    </div>
+
+
 
                                             </div>
                                             </div>

@@ -74,6 +74,7 @@ module.exports = {
     },
     route :function (router) {
         router.get('/api-stylist-profile/:id', function (req, res) {
+            console.log("zzzzzzzzzzz");
 
             User.findOne({_id:req.params.id}, function (err, user) {
                 if(err){

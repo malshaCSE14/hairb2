@@ -21,7 +21,7 @@ angular.module('userControllers', ['userServices'])
    };
 })
     //search stylist
-    .controller('searchCtrl', function ($http, $location,$timeout, User) {
+    .controller('searchCtrl', function ($http, $location,$timeout, User, $routeParams) {
         var app = this;
         this.searchStylist = function (searchData) {
             User.search(app.searchData).then(function (data) {
@@ -39,6 +39,46 @@ angular.module('userControllers', ['userServices'])
             });
         };
     })
+// stylistProfileCtrl
+    .controller('stylistProfileCtrl', function ($http, $location,$timeout, User, $routeParams) {
+        // getStylistProfile
+
+        // this.getStylist = function (profileData) {
+        // $routeParams._id
+        //     User.getStylistProfile().then(function (data) {
+        //         if(data.data.success){
+        //             console.log("ppppppppppp");
+        //             app.result = data.data.result;
+        //             // $timeout(function () {
+        //             //     $location.path('/search');
+        //             // },500);
+        //         }else{
+        //         }
+        //     })
+        // }
+        var app = this;
+        User.getStylistProfile($routeParams.id).then(function (data) {
+            if(data.data.success){
+                app.result = data.data.result;
+                if (data.data.result.profile.skills.haircutting) app.haircutting = ""; else app.haircutting = "hidden";
+                if (data.data.result.profile.skills.coloring) app.coloring = ""; else  app.coloring = "hidden";
+                if (data.data.result.profile.skills.rebonding) app.rebonding = "";  else app.rebonding = "hidden";
+                if (data.data.result.profile.skills.hairrelaxing) app.hairrelaxing = "";  else app.hairrelaxing = "hidden";
+                if (data.data.result.profile.skills.straightening) app.straightening = "";  else app.straightening = "hidden";
+                if (data.data.result.profile.skills.hairstyling) app.hairstyling = "";  else app.hairstyling = "hidden";
+                if (data.data.result.profile.skills.cleansing) app.cleansing = "";  else app.cleansing = "hidden";
+                if (data.data.result.profile.skills.scalpmassage) app.scalpmassage = "";  else app.scalpmassage = "hidden";
+                if (data.data.result.profile.skills.oiltreatments) app.oiltreatments = "";  else app.oiltreatments = "hidden";
+                if (data.data.result.profile.skills.haircareadvising) app.haircareadvising = "";  else app.haircareadvising = "hidden";
+                if (data.data.result.profile.skills.haircurling) app.haircurling = "";  else app.haircurling = "hidden";
+                if (data.data.result.profile.skills.perming) app.perming = "";  else app.perming = "hidden";
+
+            }else{
+            }
+        })
+
+    })
+
     //update user account
     .controller('updateUserCtrl',function ($http, $location,$timeout, User) {
         var app = this;
@@ -47,7 +87,7 @@ angular.module('userControllers', ['userServices'])
                 if(data.data.success){
                     // app.notifyMsg = data.data.message;
                     $timeout(function () {
-                        $location.path('/stylist-profile');
+                        $location.path('/');
                     },500);
                 }else{
                     // app.notifyMsg = data.data.message;
@@ -119,17 +159,6 @@ angular.module('userControllers', ['userServices'])
             })
         }
     })
-// getStylistProfile
-    .controller('stylistProfile', function ($http, $location,$timeout, User) {
-        var app = this;
-        this.getStylistProfile(app.id).then(function (data) {
-            if(data.data.success){
-                $timeout(function () {
-                    $location.path('/stylist-profile');
-                },500);
-            }else{
-            }
-        })
-    })
+
 
 ;

@@ -66,9 +66,13 @@ var app = angular.module('appRoutes', ['ngRoute'])
         })
         .when('/stylist-profile',{
             templateUrl : 'app/views/pages/users/stylist/profile.html',
-            controller: 'stylistProfile',
-            controllerAs: 'stylistProfile',
+
             authenticated : true
+        })
+        .when('/stylist-public-profile/:id', {
+            templateUrl : 'app/views/pages/users/stylist/public_profile.html',
+            controller: 'stylistProfileCtrl',
+            controllerAs: 'stylistProfile'
         })
         .otherwise({
             redirectTo:'/'
