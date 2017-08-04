@@ -23,6 +23,7 @@ angular.module('mainController',['authServices'])
                  app.firstname = '';
                  app.loadme = true;
              }
+             app.notifyMsg = '';
 
          });
         this.doLogin = function (loginData) {
@@ -30,10 +31,16 @@ angular.module('mainController',['authServices'])
                 if(data.data.success){
                     app.notifyMsg = data.data.message;
                     $timeout(function () {
-                        //if user has no profile -> welcome page
+                        if(data.data.profiletype === 'Stylist'){
+                            $location.path('/stylist-public-profile/'+data.data.user._id);
+                        }else if(data.data.profiletype === 'Salon'){
+                            $location.path('/search');
+                        }else{
+                            $location.path('/welcome');
+                        }
+                        // if user has no profile -> welcome page
                         //else if user has no stylist profile ->salon profile no.1
                         //else stylist profile
-                        $location.path('/stylist-profile');
                         app.loginData ={};
                     },500);
                     // $location.path('/')

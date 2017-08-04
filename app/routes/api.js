@@ -21,16 +21,16 @@ module.exports = {
         var user = await User.findOne({email:req.body.email}).exec();
         // .select('firstname lastname email password')
         if(!user){
-            res.status(400).json({success:false, message:'Could not authenticate user'});
+            res.json({success:false, message:'Could not authenticate user'});
         }else if(user){
 
             if(req.body.password){
                 var validPassword = passwordHash.verify(req.body.password, user.password);
             }else{
-                res.status(400).json({success:false, message:'No password provided'});
+                res.json({success:false, message:'No password provided'});
             }
             if(!validPassword){
-                res.status(401).json({success:false, methods:'Invalid Password'});
+                res.json({success:false, message:'Invalid Password'});
             }else {
                 var token = jwt.sign({
                         firstname: user.firstname,
@@ -41,13 +41,20 @@ module.exports = {
                     {
                         expiresIn: '24h'
                     });
-                if(user.salonProfiles[0]===null){
-                    console.log("No salon profile"); //working
-                }else{
-                    console.log(user.salonProfiles);
+                var profiletype='Null';
+                if(user.profile.jobcategories.stylist.isset || user.profile.jobcategories.educator.isset || user.profile.jobcategories.apperentice.isset ){
+                    profiletype = 'Stylist';
+                    // console.log("Has stylist profile. Then load it");
                 }
-
-                res.status(200).json({success:true, message:'User Authenticated', token:token, firstname: user.firstname, lastname:user.lastname});
+                else if(user.salonProfiles.length!==0) {
+                    profiletype = 'Salon';
+                    // console.log("Has salon profile. Then load 0th"); //working
+                }
+                else{
+                    profiletype = 'Null';
+                    // console.log("No profile. load welcome");
+                }
+                res.status(200).json({success:true, message:'User Authenticated', profiletype:profiletype, user:user, token:token, firstname: user.firstname, lastname:user.lastname});
             }
 
         }
@@ -63,7 +70,7 @@ module.exports = {
         user.save(function (err) {
             if (err) {
                 console.log(err);
-                res.json({success:false, message:'Invalid data!!!'});
+                res.json({success:false, message:'Invalid user registration!!!'});
             } else {
                 res.json({success:true, message:'User Registered!!!'});
 
@@ -100,6 +107,7 @@ module.exports = {
         });
         router.post('/api-search', function (req,res) {
             var obj = {
+                'profile': { $ne: null }
             };
             for (var item in req.body) {
                 if (item === "educatorset")

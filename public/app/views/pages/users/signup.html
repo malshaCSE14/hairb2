@@ -7,7 +7,7 @@
                     <form id="signupForm" name="signupForm" class="form-horizontal" ng-submit="register.regUser(regData);">
 
                         <div class="form-group required">
-                            <label for="inputName3" class="col-sm-4 control-label">First Name</label>
+                            <label  style="color: white"  for="inputName3" class="col-sm-4 control-label">First Name</label>
 
                             <div class="col-sm-8">
                                 <input ng-model="register.regData.firstname" type="text" class="form-control" name="fname" id="fname" placeholder="First Name" required="required">
@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="form-group required">
-                            <label for="inputName4" class="col-sm-4 control-label">Last Name</label>
+                            <label  style="color: white"  for="inputName4" class="col-sm-4 control-label">Last Name</label>
 
                             <div class="col-sm-8">
                                 <input  ng-model="register.regData.lastname" type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" required="required">
@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="form-group required">
-                            <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
+                            <label  style="color: white"  for="inputEmail3" class="col-sm-4 control-label">Email</label>
 
                             <div class="col-sm-8">
                                 <input type="email" class="form-control" ng-model="register.regData.email" name="email" id="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group required">
-                            <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
+                            <label  style="color: white"  for="inputPassword3" class="col-sm-4 control-label">Password</label>
 
                             <div class="col-sm-8">
                                 <input id="password" ng-model="register.regData.password" ng-change="change()" type="password" class="form-control" name="password" placeholder="Password" required="required">
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group required">
-                            <label for="inputPassword4"  class="col-sm-4 control-label">Confirm Password</label>
+                            <label  style="color: white"  for="inputPassword4"  class="col-sm-4 control-label">Confirm Password</label>
 
                             <div class="col-sm-8" ng-class="{'has-success': confirmed}">
                                 <input  id="confirm" match="{{[password]}}" ng-model="register.regData.confirm"  ng-change="change()" type="password" class="form-control" name="confirm" placeholder="Confirm Password" required="required">
@@ -49,12 +49,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Required</label>
+                            <label  style="color: white" class="col-sm-4 control-label required-message">Required</label>
                         </div>
 
 
                         <div class="form-group col-lg-4">
-                            <p ng-show="invalid">user exists</p>
+                            <p style="color: #efc33f" ng-show="invalid">user exists</p>
                         </div>
                         <!--confirmed-->
                         <!--<div class="form-group col-lg-4">-->
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="show-hide-message">
-                            <h2>{{register.notifyMsg}}</h2>
+                            <h2 style="color: #efc33f">{{register.notifyMsg}}</h2>
                         </div>
                     </form>
 

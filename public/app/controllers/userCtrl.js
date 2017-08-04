@@ -10,7 +10,7 @@ angular.module('userControllers', ['userServices'])
             if(data.data.success){
                 app.notifyMsg = data.data.message;
                 $timeout(function () {
-                    $location.path('/welcome');
+                    $location.path('/signin');
                 },500);
                 // $location.path('/')
 
@@ -41,21 +41,7 @@ angular.module('userControllers', ['userServices'])
     })
 // stylistProfileCtrl
     .controller('stylistProfileCtrl', function ($http, $location,$timeout, User, $routeParams) {
-        // getStylistProfile
-
-        // this.getStylist = function (profileData) {
-        // $routeParams._id
-        //     User.getStylistProfile().then(function (data) {
-        //         if(data.data.success){
-        //             console.log("ppppppppppp");
-        //             app.result = data.data.result;
-        //             // $timeout(function () {
-        //             //     $location.path('/search');
-        //             // },500);
-        //         }else{
-        //         }
-        //     })
-        // }
+        //get stylist profile
         var app = this;
         User.getStylistProfile($routeParams.id).then(function (data) {
             if(data.data.success){

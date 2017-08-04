@@ -133,7 +133,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="post-block">
+                                    <div class="post-block" ng-repeat="each_stylist in search.result" >
                                         <div class="row ">
                                             <!-- post block -->
                                             <div class="col-md-4">
@@ -146,23 +146,19 @@
                                                     <div class="post-content">
                                                         <!--{{search.resultlength}}-->
 
-                                                        <h2><a href="#" class="title" target="_blank">{{search.result[0].firstname}}</a></h2>
-                                                        <p class="meta"> <span class=""></span> </p>
-                                                        <p class="meta"> <span class="meta-comment">[Rating]</a></span></p>
-                                                        <p class="meta"><span class="meta-author">id: {{search.result[0]._id}}</span></p>
-                                                        <p>Description: {{search.result[0].profile.description}}</p>
+                                                        <!--<h2><a href="#" class="title" target="_blank">{{search.result[0].firstname}}</a></h2>-->
+                                                        <h2><a href="#" class="title" target="_blank">{{each_stylist.firstname +" "+ each_stylist.lastname}}</a></h2>
+                                                        <p class="meta" ng-if="each_stylist.profile.jobcategories.educator.isset"><strong>Educator </strong> Rate: {{each_stylist.profile.jobcategories.educator.rate}}<span class=""></span> </p>
+                                                        <p class="meta" ng-if="each_stylist.profile.jobcategories.stylist.isset"><strong>Stylist </strong> Rate: {{each_stylist.profile.jobcategories.stylist.rate}}<span class=""></span> </p>
+                                                        <p class="meta" ng-if="each_stylist.profile.jobcategories.apperentice.isset"><strong>Apprentice </strong>Rate: {{each_stylist.profile.jobcategories.apperentice.rate}} <span class=""></span> </p>
+
+                                                        <p class="meta"> <span class="meta-comment">[Rate]</a></span></p>
+                                                        <p class="meta"><span class="meta-author">City: {{each_stylist.profile.city}}</span></p>
+                                                        <p>Description: {{each_stylist.profile.description}}</p>
                                                         <form>
                                                             <a href="/book-stylist" class="btn btn-default">Book Now</a>
                                                         </form>
-                                                        <!--<form method="get" ng-submit="stylistProfile.getStylist(profileData);" >-->
-                                                            <input type="text" ng-model="stylistProfile.profileData.id" value="59708C362F179F1558DBB208">
-                                                            <a href="/stylist-public-profile/{{search.result[0]._id}}" class="btn btn-default">Profile</a>
-                                                        <!--{{search.result[0]._id}}-->
-                                                        <!--'597EDD861DED9A23B06014FD'    -->
-                                                        <!--value="59708C362F179F1558DBB208"-->
-                                                            <!--<button id="profilebutton" name="profilebutton" class="btn btn-default">Profile</button>-->
-                                                        <!--</form>-->
-
+                                                            <a href="/stylist-public-profile/{{each_stylist._id}}" class="btn btn-default">Profile</a>
                                                     </div>
 
 

@@ -105,10 +105,8 @@ describe('Post dummy user', function () {
                 json : spyStub
             };
             var result = await users.loginUser(request,response);
-            // console.log(result);
-            // console.log(statusStub)
-            assert.equal(statusStub.calledWith(401), true);
-            // assert.equal(result, 'Called');
+
+            assert.equal(false, spyStub.args[0][0].success);
         } );
 
         it('Incorrect email', async function () {
@@ -125,7 +123,7 @@ describe('Post dummy user', function () {
                 json : spyStub
             };
             var result = await users.loginUser(request,response);
-            assert.equal(statusStub.calledWith(400), true);
+            assert.equal(false, spyStub.args[0][0].success);
         } );
         it('Password not Provided', async function () {
             const request = {
@@ -140,7 +138,7 @@ describe('Post dummy user', function () {
                 json : spyStub
             };
             var result = await users.loginUser(request,response);
-            assert.equal(statusStub.calledWith(400), true);
+            assert.equal(false, spyStub.args[0][0].success);
         } );
 
     });
