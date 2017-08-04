@@ -4,13 +4,13 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <h1 class="hero-title">Sign Up</h1>
-                    <form class="form-horizontal" ng-submit="register.regUser(regData);">
+                    <form id="signupForm" name="signupForm" class="form-horizontal" ng-submit="register.regUser(regData);">
 
                         <div class="form-group required">
                             <label for="inputName3" class="col-sm-4 control-label">First Name</label>
 
                             <div class="col-sm-8">
-                                <input ng-model="register.regData.firstname" type="text" class="form-control" id="inputName3" placeholder="First Name" required="required">
+                                <input ng-model="register.regData.firstname" type="text" class="form-control" name="fname" id="fname" placeholder="First Name" required="required">
                             </div>
                         </div>
 
@@ -18,7 +18,7 @@
                             <label for="inputName4" class="col-sm-4 control-label">Last Name</label>
 
                             <div class="col-sm-8">
-                                <input  ng-model="register.regData.lastname" type="text" class="form-control" id="inputName4" placeholder="Last Name" required="required">
+                                <input  ng-model="register.regData.lastname" type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" required="required">
                             </div>
                         </div>
 
@@ -26,7 +26,7 @@
                             <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
 
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" ng-model="register.regData.email" id="inputEmail3" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                <input type="email" class="form-control" ng-model="register.regData.email" name="email" id="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
                             <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
 
                             <div class="col-sm-8">
-                                <input id="password" ng-model="register.regData.password" ng-change="change()" type="password" class="form-control" id="inputPassword3" placeholder="Password" required="required">
+                                <input id="password" ng-model="register.regData.password" ng-change="change()" type="password" class="form-control" name="password" placeholder="Password" required="required">
                             </div>
                         </div>
 
@@ -42,7 +42,7 @@
                             <label for="inputPassword4"  class="col-sm-4 control-label">Confirm Password</label>
 
                             <div class="col-sm-8" ng-class="{'has-success': confirmed}">
-                                <input  id="confirm" match="{{[password]}}" ng-model="register.regData.confirm"  ng-change="change()" type="password" class="form-control" id="inputPassword4" placeholder="Confirm Password" required="required">
+                                <input  id="confirm" match="{{[password]}}" ng-model="register.regData.confirm"  ng-change="change()" type="password" class="form-control" name="confirm" placeholder="Confirm Password" required="required">
                                 <span class="glyphicon icon-success" alt="" id="tick" style="float: right; margin-top: -25px; margin-right: 10px" ng-show="sample">&#xe013;</span>
                                 <!--<img src="http://wiki.pandorafms.com/images/d/d6/Yes_tick.png" alt="" id="tick" style="float: right; margin-top: -28px; margin-right: 8px" ng-show="sample">-->
 

@@ -30,6 +30,9 @@ angular.module('mainController',['authServices'])
                 if(data.data.success){
                     app.notifyMsg = data.data.message;
                     $timeout(function () {
+                        //if user has no profile -> welcome page
+                        //else if user has no stylist profile ->salon profile no.1
+                        //else stylist profile
                         $location.path('/stylist-profile');
                         app.loginData ={};
                     },500);

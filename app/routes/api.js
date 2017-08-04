@@ -18,7 +18,8 @@ mongoose.Promise = global.Promise;
 module.exports = {
     loginUser : async function (req, res) {
         let newUser = User();
-        var user = await User.findOne({email:req.body.email}).select('firstname lastname email password').exec();
+        var user = await User.findOne({email:req.body.email}).exec();
+        // .select('firstname lastname email password')
         if(!user){
             res.status(400).json({success:false, message:'Could not authenticate user'});
         }else if(user){
@@ -31,7 +32,6 @@ module.exports = {
             if(!validPassword){
                 res.status(401).json({success:false, methods:'Invalid Password'});
             }else {
-
                 var token = jwt.sign({
                         firstname: user.firstname,
                         lastname: user.lastname,
@@ -41,7 +41,12 @@ module.exports = {
                     {
                         expiresIn: '24h'
                     });
-                // console.log(user);
+                if(user.salonProfiles[0]===null){
+                    console.log("No salon profile"); //working
+                }else{
+                    console.log(user.salonProfiles);
+                }
+
                 res.status(200).json({success:true, message:'User Authenticated', token:token, firstname: user.firstname, lastname:user.lastname});
             }
 
