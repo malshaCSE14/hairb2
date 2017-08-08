@@ -23,6 +23,11 @@ angular.module('userServices' , [])
     userFactory.getStylistProfile = function (id) {
         return $http.get('/api-stylist-profile/'+id);
     };
+    // bookStylist
+    userFactory.bookStylist = function (id) {
+        return $http.get('/api-booking-page/'+id);
+    };
+    // searchStylist
 
     //create-stylist-profile
     userFactory.createStylistProfile = function (createData) {

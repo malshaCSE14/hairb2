@@ -84,6 +84,7 @@ module.exports = {
         }
 
     },
+
     route :function (router) {
         router.get('/api-stylist-profile/:id', function (req, res) {
             console.log("zzzzzzzzzzz");
@@ -101,20 +102,35 @@ module.exports = {
                 }
             })
         });
-        //search stylist
-        router.use('/api-search', function (req, res, next) {
-            next()
+// '/api-booking-page/'+id
+        router.get('/api-booking-page/:id', function (req, res) {
+            User.findOne({_id:req.params.id}, function (err, user) {
+                if(err){
+                    throw err;
+                }
+                else if(user){
+                    res.json({success:true, message:'User found', firstname:user.firstname, lastname:user.lastname});
+                    console.log(user);
+                }
+                else{
+                    res.json({success:false, message:'No user found'});
+                }
+            })
         });
+        //search stylist
+        // '/api-booking-page/'+id
+
         router.post('/api-search', function (req,res) {
+            console.log("arrived");
             var obj = {
                 'profile': { $ne: null }
             };
             for (var item in req.body) {
-                if (item === "educatorset")
+                if (item === "educatorset" && req.body.educatorset===true)
                     obj['profile.jobcategories.educator.isset'] = req.body.educatorset;
-                if (item === "stylistset")
+                if (item === "stylistset" && req.body.stylistset===true)
                     obj['profile.jobcategories.stylist.isset'] = req.body.stylistset;
-                if (item === "apprenticeset")
+                if (item === "apprenticeset" && req.body.apprenticeset===true)
                     obj['profile.jobcategories.apperentice.isset'] = req.body.apprenticeset;
                 if (item === "city")
                     obj['profile.city'] = req.body.city;
@@ -143,7 +159,8 @@ module.exports = {
                 if (item === "perming")
                     obj['profile.skills.perming']=req.body.perming;
             }
-            User.find(obj, function (err, user) {
+
+                User.find(obj, function (err, user) {
                 if(err){
                     throw err;
                 }
@@ -155,7 +172,9 @@ module.exports = {
                     res.json({success: false, message: "No stylist found"})
                 }
 
-            })
+                })
+
+
         });
         //==create user account
         router.post('/users', this.postUser);

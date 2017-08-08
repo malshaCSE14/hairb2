@@ -8,9 +8,6 @@
                         <!-- widget search -->
                         <h3 class="widget-title" >(stylist public profile)Profile Picture</h3>
                         <a href="index.html"><img src="assets/images/profileDefault.png" alt=""></a>
-                        <!--<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">-->
-                        <!--<a href="index.html"><img src="assets/images/profileDefault.png" alt=""></a>-->
-                        <!--</div>-->
                     </div>
                     <!-- /.widget search -->
                     <div class="widget widget-social">
@@ -23,7 +20,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="widget widget-contact">
-                                <h1>{{stylistProfile.result.firstname +" "+ stylistProfile.result.lastname}}</h1>
+                                <h1 id="name">{{stylistProfile.result.firstname +" "+ stylistProfile.result.lastname}}</h1>
 
                                 <form id="bootstrapTagsInputForm" method="post" class="form-horizontal">
 
@@ -59,10 +56,8 @@
 
                                             </div>
 
-
                                         </div>
                                         <!--description-->
-                                        <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
                                         <div class="col-md-12">
                                             <!--<div class="form-group">-->
                                             <label class="control-label" for="textarea">Description</label>
@@ -73,7 +68,6 @@
                                         <div class="col-md-12">
                                             <label class="control-label" for="address">address</label>
                                             <p>{{stylistProfile.result.profile.address}}</p>
-                                            <!--<input type="text" name="address" id="address" placeholder="" class="form-control">-->
                                         </div>
                                         <!--city-->
                                         <div class="col-md-12">
@@ -100,49 +94,14 @@
                                             <span class="{{stylistProfile.haircareadvising}}">Haircare Advising<br></span>
                                             <span class="{{stylistProfile.haircurling}}">Hair Curling<br></span>
                                             <span class="{{stylistProfile.perming}}">Perming</span>
-
-
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Hair Cutting</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Coloring</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Rebonding</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Hair relaxing</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Straightening</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Hair Styling</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Cleansing</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Scalp massage</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Oil treatments</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Haircare Advising</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Hair Curling</label>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-md-5 checkbox">-->
-                                                <!--<label><input type="checkbox" value="">Perming</label>-->
-                                            <!--</div>-->
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="form-group">
-                                                <button id="singlebutton" name="singlebutton" class="btn btn-default">Book Now</button>
-                                            </div>
+                                            <!--<div class="form-group">-->
+                                                <!--<button id="singlebutton" name="singlebutton" class="btn btn-default">Book Now</button>-->
+                                            <!--</div>-->
+                                            <form>
+                                                <a href="/book-stylist/{{stylistProfile.result._id}}" class="btn btn-default">Book Now</a>
+                                            </form>
                                         </div>
 
                                     </div>

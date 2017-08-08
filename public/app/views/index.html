@@ -86,13 +86,13 @@
                                 <li><a ng-show="!main.isLoggedIn" href="/signin" title="Login">Sign In</a> </li>
                                 <li><a ng-show="!main.isLoggedIn" href="/signup" title="Register as a salon or stylist">Sign Up</a> </li>
 
-                                <li class="has-sub"><a ng-show="main.isLoggedIn" href="#">{{main.firstname}}</a>
+                                <li id="account" class="has-sub"><a ng-show="main.isLoggedIn" href="#">{{main.firstname}}</a>
                                     <ul>
                                         <li><a href="/stylist-profile">Profile</a></li>
                                         <li><a href="/stylist-profile-edit">Edit Profile</a></li>
                                         <li><a href="/create-stylist-profile">New Stylist Profile</a></li>
                                         <li><a href="/create-salon-profile">New Salon Profile</a></li>
-                                        <li><a href="/" ng-click = "main.logout();">Logout</a></li>
+                                        <li><a id="logout" href="/" ng-click = "main.logout();">Logout</a></li>
                                     </ul>
                                 </li>
 

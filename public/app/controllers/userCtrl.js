@@ -39,6 +39,21 @@ angular.module('userControllers', ['userServices'])
             });
         };
     })
+
+// bookingCtrl
+    .controller('bookingCtrl', function ($http, $location,$timeout, User, $routeParams) {
+        //get stylist profile
+        var app = this;
+        User.bookStylist($routeParams.id).then(function (data) {
+            if(data.data.success){
+                app.firstname = data.data.firstname;
+                app.lastname = data.data.lastname;
+                console.log(app.firstname);
+            }else{
+            }
+        })
+
+    })
 // stylistProfileCtrl
     .controller('stylistProfileCtrl', function ($http, $location,$timeout, User, $routeParams) {
         //get stylist profile

@@ -49,7 +49,7 @@
                                 <div class="col-md-12">
                                     <label class="control-label" for="rating">Rating</label>
                                     <select class="form-control" ng-model="search.searchData.rating" id="rating">
-                                        <option value="Any">Any</option>
+                                        <option value="">Any</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -62,7 +62,7 @@
                                 <div class="col-md-12">
                                     <label class="control-label"  for="city">city</label>
                                     <select ng-model="search.searchData.city" class="form-control" id="city">
-                                        <option value="Any">Any</option>
+                                        <option value="">Any</option>
                                         <option value="Sydney">Sydney</option>
                                         <option value="Melbourne">Melbourne</option>
                                         <option value="Perth">Perth</option>
@@ -156,7 +156,7 @@
                                                         <p class="meta"><span class="meta-author">City: {{each_stylist.profile.city}}</span></p>
                                                         <p>Description: {{each_stylist.profile.description}}</p>
                                                         <form>
-                                                            <a href="/book-stylist" class="btn btn-default">Book Now</a>
+                                                            <a href="/book-stylist/{{each_stylist._id}}" class="btn btn-default">Book Now</a>
                                                         </form>
                                                             <a href="/stylist-public-profile/{{each_stylist._id}}" class="btn btn-default">Profile</a>
                                                     </div>

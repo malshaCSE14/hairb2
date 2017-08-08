@@ -7,8 +7,10 @@ var app = angular.module('appRoutes', ['ngRoute'])
         .when('/',{
             templateUrl : 'app/views/pages/home.html'
         })
-        .when('/book-stylist', {
-            templateUrl : 'app/views/pages/users/salon/book_stylist.html'
+        .when('/book-stylist/:id', {
+            templateUrl : 'app/views/pages/users/salon/book_stylist.html',
+            controller : 'bookingCtrl',
+            controllerAs : 'booking'
         })
         .when('/about',{
             templateUrl : 'app/views/pages/about.html'
