@@ -5,3 +5,4 @@ angular.module('userApp', ['appRoutes' , 'userControllers', 'userServices','main
 .config(function ($httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptors');
 });
+//searchStylistController

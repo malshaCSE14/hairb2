@@ -11,11 +11,11 @@ angular.module('mainController',['authServices'])
                  console.log('User logged in');
                  app.isLoggedIn = true;
                  Auth.getUser().then(function (data) {
+                     app._id = data.data._id;
                      app.firstname = data.data.firstname;
                      app.lastname = data.data.lastname;
                      app.address = data.data.address;
                      app.loadme = true;
-                     // console.log(data.data.firstname);
                  });
              }else{
                  console.log('not logged in');

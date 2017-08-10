@@ -20,26 +20,22 @@ angular.module('userControllers', ['userServices'])
         });
    };
 })
-    //search stylist
-    .controller('searchCtrl', function ($http, $location,$timeout, User, $routeParams) {
-        var app = this;
-        this.searchStylist = function (searchData) {
-            User.search(app.searchData).then(function (data) {
-                if(data.data.success){
-                    // app.notifyMsg = data.data.message;
-                    app.result = data.data.result;
-                    app.resultlength = data.data.result.length;
-                    $timeout(function () {
-                        $location.path('/search');
-                    },500);
-                    // $location.path('/')
-                }else{
-                    app.notifyMsg = data.data.message;
-                }
-            });
-        };
-    })
-
+    // //search stylist
+    // .controller('searchCtrl', function ($http, $location,$timeout, User, $routeParams) {
+    //     var app = this;
+    //     this.searchStylist = function (searchData) {
+    //         User.search(app.searchData).then(function (data) {
+    //             if(data.data.success){
+    //                 app.result = data.data.result;
+    //                 app.resultlength = data.data.result.length;
+    //                 console.log(app.result);
+    //                 // $location.path('/search').search({result:app.result});
+    //             }else{
+    //                 app.notifyMsg = data.data.message;
+    //             }
+    //         });
+    //     };
+    // })
 // bookingCtrl
     .controller('bookingCtrl', function ($http, $location,$timeout, User, $routeParams) {
         //get stylist profile
@@ -61,6 +57,26 @@ angular.module('userControllers', ['userServices'])
         User.getStylistProfile($routeParams.id).then(function (data) {
             if(data.data.success){
                 app.result = data.data.result;
+                if (data.data.result.profile.jobcategories.educator) console.log(data.data.result.profile.jobcategories.educator);
+                if (data.data.result.profile.jobcategories.educator){
+                    if(data.data.result.profile.jobcategories.educator.rate){
+                        app.educatorrate = "";
+                    }else app.educatorrate = "hidden";
+                    app.educatorset = "";
+                }else app.educatorset = "hidden";
+                if (data.data.result.profile.jobcategories.stylist){
+                    if(data.data.result.profile.jobcategories.educator.rate){
+                        app.stylistrate = "";
+                    }else app.stylistrate = "hidden";
+                    app.stylistset = "";
+                }else  app.stylistset = "hidden";
+                if (data.data.result.profile.jobcategories.apperentice){
+                    if(data.data.result.profile.jobcategories.apperentice.rate){
+                        app.apperenticerate = "";
+                    }else app.apperenticerate = "hidden";
+                    app.apperenticeset = "";
+                }else app.apperenticeset = "hidden";
+
                 if (data.data.result.profile.skills.haircutting) app.haircutting = ""; else app.haircutting = "hidden";
                 if (data.data.result.profile.skills.coloring) app.coloring = ""; else  app.coloring = "hidden";
                 if (data.data.result.profile.skills.rebonding) app.rebonding = "";  else app.rebonding = "hidden";
@@ -134,9 +150,9 @@ angular.module('userControllers', ['userServices'])
         this.newStylistProfile = function (createData) {
             User.createStylistProfile(app.createData).then(function (data) {
                 if(data.data.success){
-                    // app.notifyMsg = data.data.message;
+                    console.log(data.data.profile_id);
                     $timeout(function () {
-                        $location.path('/stylist-profile');
+                        $location.path('/stylist-public-profile/'+data.data.profile_id);
                     },500);
                 }else{
                     // app.notifyMsg = data.data.message;
@@ -152,13 +168,49 @@ angular.module('userControllers', ['userServices'])
                 if(data.data.success){
                     // app.notifyMsg = data.data.message;
                     $timeout(function () {
-                        $location.path('/stylist-profile');
+                        $location.path('/stylist-public-profile/'+data.data.profile_id);
                     },500);
                 }else{
                     // app.notifyMsg = data.data.message;
                 }
             })
         }
+    })
+    .controller('searchStylistCtrl', function ($http, $location,$timeout, User) {
+        var app = this;
+        app.loading = true;
+        User.getSearchStylist(app.searchData).then(function (data) {
+            if(data.data.success){
+                app.stylists = data.data.result;
+            }else{
+                app.errorMsg = data.data.message;
+            }
+        });
+        // this.getStylists = function (searchData) {
+        //     User.getSearch(searchData).then(function (data) {
+        //         console.log("=====");
+        //         if(data.data.success){
+        //             app.stylists = data.data.result;
+        //
+        //         }else{
+        //             app.errorMsg = data.data.message;
+        //         }
+        //     });
+        // };
+
+        this.searchStylist = function (searchData) {
+            User.search(app.searchData).then(function (data) {
+                if(data.data.success){
+                    app.stylists = data.data.result;
+                    app.resultlength = data.data.result.length;
+                    // console.log(app.result);
+                    // $location.path('/search').search({result:app.result});
+                }else{
+                    app.notifyMsg = data.data.message;
+                }
+            });
+        };
+
     })
 
 

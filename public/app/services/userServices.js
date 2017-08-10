@@ -28,7 +28,14 @@ angular.module('userServices' , [])
         return $http.get('/api-booking-page/'+id);
     };
     // searchStylist
-
+    userFactory.getSearchStylist = function (searchData) {
+        // return $http.get('/api-search-stylist');
+        return $http({
+            url: '/api-search-stylist',
+            method: 'GET',
+            // params: {city:'Perth'}
+        });
+    };
     //create-stylist-profile
     userFactory.createStylistProfile = function (createData) {
         return $http.post('/api-create-stylist-profile', createData);

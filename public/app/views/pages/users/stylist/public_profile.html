@@ -6,7 +6,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="widget widget-contact">
                         <!-- widget search -->
-                        <h3 class="widget-title" >(stylist public profile)Profile Picture</h3>
+                        <h3 class="widget-title" >Stylist Public Profile</h3>
                         <a href="index.html"><img src="assets/images/profileDefault.png" alt=""></a>
                     </div>
                     <!-- /.widget search -->
@@ -17,10 +17,22 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="widget widget-contact">
                                 <h1 id="name">{{stylistProfile.result.firstname +" "+ stylistProfile.result.lastname}}</h1>
+
+                                <div class="col-md-12">
+                                    <span ng-if="main._id == stylistProfile.result._id">
+                                        <div class="col-xlg-6 col-lg-6 col-md-6 col-xs-12"
+                                             ba-panel
+                                             ba-panel-title="Calendar"
+                                             ba-panel-class="xmedium-panel feed-comply-panel with-scroll calendar-panel">
+                                            <dashboard-calendar></dashboard-calendar>
+                                        </div>
+                                    </span>
+                                </div>
 
                                 <form id="bootstrapTagsInputForm" method="post" class="form-horizontal">
 
@@ -30,33 +42,20 @@
                                             <label class="control-label" for="Subject">Job Categories</label>
                                         </div>
 
+
+                                        <!--job types-->
                                         <div class="col-md-12">
-                                            <div class="col-md-10">
-                                                <div class="col-md-4 checkbox">
-                                                    <input type="checkbox"  name="opt" id="opt1" value="Y" onclick="check()"> Educator
-                                                </div><div class="col-md-8 checkbox">
-                                                Rate:  $  <input type="number" name="txt" disabled="disabled" id="txt1">
-                                            </div>
-
-                                            </div>
-                                            <div class="col-md-10">
-                                                <div class="col-md-4 checkbox">
-                                                    <input type="checkbox"  name="opt" id="opt2" value="Y" onclick="check()"> Stylist
-                                                </div><div class="col-md-8 checkbox">
-                                                Rate:  $  <input type="number" name="txt" disabled="disabled" id="txt2">
-                                            </div>
-
-                                            </div>
-                                            <div class="col-md-10">
-                                                <div class="col-md-4 checkbox">
-                                                    <input type="checkbox"  name="opt" id="opt3" value="Y" onclick="check()"> Apprentice
-                                                </div><div class="col-md-8 checkbox">
-                                                Rate:  $  <input type="number" name="txt" disabled="disabled" id="txt3">
-                                            </div>
-
-                                            </div>
-
+                                            <span class="{{stylistProfile.educatorset}}">Educator
+                                                <span class="meta-comment {{stylistProfile.educatorrate}}">Rate: ${{stylistProfile.result.profile.jobcategories.educator.rate}}</span><br>
+                                            </span>
+                                            <span class="{{stylistProfile.stylistset}}">Stylist
+                                                <spn class="meta-comment {{stylistProfile.stylistrate}} meta-comment">Rate: ${{stylistProfile.result.profile.jobcategories.stylist.rate}}</spn><br>
+                                            </span>
+                                            <span class="{{stylistProfile.apperenticeset}}">Apprentice
+                                                <span class="meta-comment {{stylistProfile.apperenticerate}}">Rate: ${{stylistProfile.result.profile.jobcategories.apperentice.rate}}</span><br>
+                                            </span>
                                         </div>
+
                                         <!--description-->
                                         <div class="col-md-12">
                                             <!--<div class="form-group">-->
@@ -96,12 +95,11 @@
                                             <span class="{{stylistProfile.perming}}">Perming</span>
                                         </div>
                                         <div class="col-md-12">
-                                            <!--<div class="form-group">-->
-                                                <!--<button id="singlebutton" name="singlebutton" class="btn btn-default">Book Now</button>-->
-                                            <!--</div>-->
-                                            <form>
-                                                <a href="/book-stylist/{{stylistProfile.result._id}}" class="btn btn-default">Book Now</a>
-                                            </form>
+                                            <span ng-if="main._id != stylistProfile.result._id">
+                                                <form>
+                                                    <a href="/book-stylist/{{stylistProfile.result._id}}" class="btn btn-default">Book Now</a>
+                                                </form>
+                                            </span>
                                         </div>
 
                                     </div>

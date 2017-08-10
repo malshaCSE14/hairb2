@@ -1,88 +1,84 @@
-<div class="page-header">
-    <div class="hero-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <h1 class="hero-title">Sign Up</h1>
-                    <form id="signupForm" name="signupForm" class="form-horizontal" ng-submit="register.regUser(regData);">
 
-                        <div class="form-group required">
-                            <label  style="color: white"  for="inputName3" class="col-sm-4 control-label">First Name</label>
+    <fieldset>
+        <div class="page-header">
+            <div class="hero-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <h1 class="hero-title">Sign Up</h1>
+                            <form id="signupForm" name="signupForm" class="form-horizontal" ng-submit="register.regUser(regData);">
 
-                            <div class="col-sm-8">
-                                <input ng-model="register.regData.firstname" type="text" class="form-control" name="fname" id="fname" placeholder="First Name" required="required">
-                            </div>
+                                <div class="form-group required">
+                                    <label  style="color: white"  for="inputName3" class="col-sm-4 control-label">First Name</label>
+
+                                    <div class="col-sm-8">
+                                        <input ng-model="register.regData.firstname" type="text" class="form-control" name="fname" id="fname" placeholder="First Name" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group required">
+                                    <label  style="color: white"  for="inputName4" class="col-sm-4 control-label">Last Name</label>
+
+                                    <div class="col-sm-8">
+                                        <input  ng-model="register.regData.lastname" type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" required="required">
+                                    </div>
+                                </div>
+
+                                <div class="form-group required">
+                                    <label  style="color: white"  for="inputEmail3" class="col-sm-4 control-label">Email</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="email" class="form-control" ng-model="register.regData.email" name="email" id="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                    </div>
+                                </div>
+                                <div class="form-group required">
+                                    <label  style="color: white"  for="inputPassword3" class="col-sm-4 control-label">Password</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="password" placeholder="Password" id="password" ng-model="register.regData.password"  class="form-control" name="password" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group required">
+                                    <label  style="color: white"  for="inputPassword4"  class="col-sm-4 control-label">Confirm Password</label>
+
+                                    <div class="col-sm-8" ng-class="{'has-success': confirmed}">
+                                        <input type="password" placeholder="Confirm Password" id="confirm_password"  ng-model="register.regData.confirm" class="form-control" name="confirm_password"  required>
+                                        <span class="glyphicon icon-success" alt="" id="tick" style="float: right; margin-top: -25px; margin-right: 10px" ng-show="sample">&#xe013;</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  style="color: white" class="col-sm-4 control-label required-message">Required</label>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <p style="color: #efc33f" ng-show="invalid">user exists</p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-10">
+                                        <!--<button type="submit" id="Button" class="btn btn-default btn-auth pure-button pure-button-primary">Sign Up</button>-->
+                                        <button type="submit" id="Button" class="btn btn-default btn-auth">Sign up</button>
+                                    </div>
+                                </div>
+                                <div class="show-hide-message">
+                                    <h2 style="color: #efc33f">{{register.notifyMsg}}</h2>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="form-group required">
-                            <label  style="color: white"  for="inputName4" class="col-sm-4 control-label">Last Name</label>
-
-                            <div class="col-sm-8">
-                                <input  ng-model="register.regData.lastname" type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" required="required">
-                            </div>
-                        </div>
-
-                        <div class="form-group required">
-                            <label  style="color: white"  for="inputEmail3" class="col-sm-4 control-label">Email</label>
-
-                            <div class="col-sm-8">
-                                <input type="email" class="form-control" ng-model="register.regData.email" name="email" id="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-                            </div>
-                        </div>
-
-                        <div class="form-group required">
-                            <label  style="color: white"  for="inputPassword3" class="col-sm-4 control-label">Password</label>
-
-                            <div class="col-sm-8">
-                                <input id="password" ng-model="register.regData.password" ng-change="change()" type="password" class="form-control" name="password" placeholder="Password" required="required">
-                            </div>
-                        </div>
-
-                        <div class="form-group required">
-                            <label  style="color: white"  for="inputPassword4"  class="col-sm-4 control-label">Confirm Password</label>
-
-                            <div class="col-sm-8" ng-class="{'has-success': confirmed}">
-                                <input  id="confirm" match="{{[password]}}" ng-model="register.regData.confirm"  ng-change="change()" type="password" class="form-control" name="confirm" placeholder="Confirm Password" required="required">
-                                <span class="glyphicon icon-success" alt="" id="tick" style="float: right; margin-top: -25px; margin-right: 10px" ng-show="sample">&#xe013;</span>
-                                <!--<img src="http://wiki.pandorafms.com/images/d/d6/Yes_tick.png" alt="" id="tick" style="float: right; margin-top: -28px; margin-right: 8px" ng-show="sample">-->
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label  style="color: white" class="col-sm-4 control-label required-message">Required</label>
-                        </div>
-
-
-                        <div class="form-group col-lg-4">
-                            <p style="color: #efc33f" ng-show="invalid">user exists</p>
-                        </div>
-                        <!--confirmed-->
-                        <!--<div class="form-group col-lg-4">-->
-                            <!--<p class="help-block" ng-show="!confirmed">Passwords do not match</p>-->
-                        <!--</div>-->
-
-
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-4 col-sm-10">
-                                <button type="submit" id="Button" class="btn btn-default btn-auth">Sign up</button>
-                            </div>
-                        </div>
-                        <div class="show-hide-message">
-                            <h2 style="color: #efc33f">{{register.notifyMsg}}</h2>
-                        </div>
-                    </form>
-
+                    </div>
                 </div>
-
             </div>
-
         </div>
+    </fieldset>
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
 
-    </div>
-
-
-
-</div>
-
-
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>

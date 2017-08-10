@@ -126,10 +126,12 @@
                                             <div class="col-md-5 checkbox">
                                                 <label><input type="checkbox" ng-model="createStylist.createData.perming"value="">Perming</label>
                                             </div>
+                                            <input type="hidden" ng-model="createStylist.createData._id" value="{{main._id}}">
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <button id="singlebutton" name="singlebutton" class="btn btn-default">Create</button>
+                                                <!--<a href="/stylist-public-profile/{{main._id}}">Create</a>-->
                                             </div>
                                         </div>
 

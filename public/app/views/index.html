@@ -78,9 +78,6 @@
                     <div class="navigation">
                         <div id="navigation">
                             <ul>
-                                <!--<li><a href="/">Hooomw</a></li>-->
-
-
                                 <li class="active"><a href="/" title="Home">Home</a></li>
                                 <!--<li><a href="/about">About</a></li>-->
                                 <li><a ng-show="!main.isLoggedIn" href="/signin" title="Login">Sign In</a> </li>
@@ -88,7 +85,7 @@
 
                                 <li id="account" class="has-sub"><a ng-show="main.isLoggedIn" href="#">{{main.firstname}}</a>
                                     <ul>
-                                        <li><a href="/stylist-profile">Profile</a></li>
+                                        <li><a href="/stylist-public-profile/{{main._id}}">Profile</a></li>
                                         <li><a href="/stylist-profile-edit">Edit Profile</a></li>
                                         <li><a href="/create-stylist-profile">New Stylist Profile</a></li>
                                         <li><a href="/create-salon-profile">New Salon Profile</a></li>
@@ -104,18 +101,6 @@
         </div>
     </div>
     <div ng-view></div>
-
-    <!--<div class="hero-section">-->
-        <!--<div class="container">-->
-            <!--<div class="row">-->
-                <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
-                    <!--<h1 class="hero-title">Hire your favourite stylist</h1>-->
-                    <!--<p class="hero-text"><strong>Your Type. Your Style. Your Color.</strong> </p>-->
-                    <!--<a href="#" class="btn btn-default">Search Stylist</a> </div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
     <div class="footer">
         <!-- footer-->
         <div class="container">
@@ -235,6 +220,7 @@
 
         });
     </script>
+
 
 </body>
 

@@ -33,6 +33,7 @@ module.exports = {
                 res.json({success:false, message:'Invalid Password'});
             }else {
                 var token = jwt.sign({
+                        _id : user._id,
                         firstname: user.firstname,
                         lastname: user.lastname,
                         email : user.email
@@ -86,8 +87,24 @@ module.exports = {
     },
 
     route :function (router) {
+        // router.use('/api-stylist-profile/:id',function (req,res,next) {
+        //     var token = req.body.token || req.body.query || req.headers['x-access-token'];
+        //     if(token){
+        //         // verify token
+        //         jwt.verify(token, secret, function (err, decoded) {
+        //             if(err) {
+        //                 res.json({success:false, message:'Token Invalid'});
+        //             }else{
+        //                 req.decoded  =decoded;
+        //                 next();
+        //             }
+        //         });
+        //     }
+        //     else{
+        //         res.json({success:false, message: 'No token provided'})
+        //     }
+        // });
         router.get('/api-stylist-profile/:id', function (req, res) {
-            console.log("zzzzzzzzzzz");
 
             User.findOne({_id:req.params.id}, function (err, user) {
                 if(err){
@@ -95,7 +112,7 @@ module.exports = {
                 }
                 else if(user){
                     res.json({success:true, message:'User found', result:user});
-                    console.log(user);
+                    // console.log(user.profile.jobcategories.educator.isset);
                 }
                 else{
                     res.json({success:false, message:'No user found'});
@@ -110,7 +127,7 @@ module.exports = {
                 }
                 else if(user){
                     res.json({success:true, message:'User found', firstname:user.firstname, lastname:user.lastname});
-                    console.log(user);
+                    // console.log(user);
                 }
                 else{
                     res.json({success:false, message:'No user found'});
@@ -118,22 +135,19 @@ module.exports = {
             })
         });
         //search stylist
-        // '/api-booking-page/'+id
-
-        router.post('/api-search', function (req,res) {
-            console.log("arrived");
+        router.get('/api-search-stylist', function (req,res) {
             var obj = {
                 'profile': { $ne: null }
             };
-            for (var item in req.body) {
-                if (item === "educatorset" && req.body.educatorset===true)
-                    obj['profile.jobcategories.educator.isset'] = req.body.educatorset;
-                if (item === "stylistset" && req.body.stylistset===true)
-                    obj['profile.jobcategories.stylist.isset'] = req.body.stylistset;
-                if (item === "apprenticeset" && req.body.apprenticeset===true)
-                    obj['profile.jobcategories.apperentice.isset'] = req.body.apprenticeset;
+            for (var item in req.query) {
+                if (item === "educatorset" && req.query.educatorset===true)
+                    obj['profile.jobcategories.educator.isset'] = req.query.educatorset;
+                if (item === "stylistset" && req.query.stylistset===true)
+                    obj['profile.jobcategories.stylist.isset'] = req.query.stylistset;
+                if (item === "apprenticeset" && req.query.apprenticeset===true)
+                    obj['profile.jobcategories.apperentice.isset'] = req.query.apprenticeset;
                 if (item === "city")
-                    obj['profile.city'] = req.body.city;
+                    obj['profile.city'] = req.query.city;
                 if (item === "haircutting")
                     obj['profile.skills.haircutting']=req.body.haircutting;
                 if (item === "coloring")
@@ -160,12 +174,69 @@ module.exports = {
                     obj['profile.skills.perming']=req.body.perming;
             }
 
+           // console.log(obj);
+            User.find(obj, function (err, user) {
+                if(err){
+                    throw err;
+                }
+                else if(user){
+                    // console.log(user);
+                    res.json({success:true, message: "Stylists found", result: user});
+                }
+                else{
+                    res.json({success: false, message: "No stylist found"})
+                }
+
+            })
+        });
+        // '/api-booking-page/'+id
+
+        router.post('/api-search', function (req,res) {
+            // console.log(req.body);
+            var obj = {
+                'profile': { $ne: null }
+            };
+            for (var item in req.body) {
+                if (item === "educatorset" && req.body.educatorset===true)
+                    obj['profile.jobcategories.educator.isset'] = req.body.educatorset;
+                if (item === "stylistset" && req.body.stylistset===true)
+                    obj['profile.jobcategories.stylist.isset'] = req.body.stylistset;
+                if (item === "apprenticeset" && req.body.apprenticeset===true)
+                    obj['profile.jobcategories.apperentice.isset'] = req.body.apprenticeset;
+                if (item === "city" && req.body.city!=='')
+                    obj['profile.city'] = req.body.city;
+                if (item === "haircutting" && req.body.haircutting===true)
+                    obj['profile.skills.haircutting']=req.body.haircutting;
+                if (item === "coloring" && req.body.coloring===true)
+                    obj['profile.skills.coloring']=req.body.coloring;
+                if (item === "rebonding" && req.body.rebodning===true)
+                    obj['profile.skills.rebonding']=req.body.rebodning;
+                if (item === "hairrelaxing" && req.body.hairrelaxing===true)
+                    obj['profile.skills.hairrelaxing']=req.body.hairrelaxing;
+                if (item === "straightening" && req.body.straightening===true)
+                    obj['profile.skills.straightening']=req.body.straightening;
+                if (item === "hairstyling" && req.body.hairstyling===true)
+                    obj['profile.skills.hairstyling']=req.body.hairstyling;
+                if (item === "cleansing" && req.body.cleansing===true)
+                    obj['profile.skills.cleansing']=req.body.cleansing;
+                if (item === "scalpmassage" && req.body.scalpmassage===true)
+                    obj['profile.skills.scalpmassage']=req.body.scalpmassage;
+                if (item === "oiltreatments" && req.body.oiltreatments===true)
+                    obj['profile.skills.oiltreatments']=req.body.oiltreatments;
+                if (item === "haircareadvising" && req.body.haircareadvising===true)
+                    obj['profile.skills.haircareadvising']=req.body.haircareadvising;
+                if (item === "haircurling" && req.body.haircurling===true)
+                    obj['profile.skills.haircurling']=req.body.haircurling;
+                if (item === "perming" && req.body.perming===true)
+                    obj['profile.skills.perming']=req.body.perming;
+            }
+
                 User.find(obj, function (err, user) {
                 if(err){
                     throw err;
                 }
                 else if(user){
-                    console.log(user.length);
+                    // console.log(user.length);
                     res.json({success:true, message: "Stylists found", result: user});
                 }
                 else{
@@ -173,8 +244,6 @@ module.exports = {
                 }
 
                 })
-
-
         });
         //==create user account
         router.post('/users', this.postUser);
@@ -198,7 +267,7 @@ module.exports = {
             }
         });
         router.post('/api-create-stylist-profile', function (req, res) {
-            console.log(req.body);
+            // console.log(req.body);
             var useremail = req.decoded.email;
             if (req.body.description){
                 var newDescription = req.body.description;
@@ -277,81 +346,41 @@ module.exports = {
                             console.log('No user found once again');
                         }else{
                             user.profile = {};
-                            if(newDescription){
-                                user.profile.description = newDescription;
-                            }
-                            if(educatorset){
-                                user.profile.jobcategories.educator.isset = educatorset;
-                            }
-                            if(educatorrate){
-                                user.profile.jobcategories.educator.rate = educatorrate;
-                            }
-                            if(stylistset){
-                                user.profile.jobcategories.stylist.isset = stylistset;
-                            }
-                            if(stylistrate){
-                                user.profile.jobcategories.stylist.rate = stylistrate;
-                            }
-                            if(apperenticeset){
-                                user.profile.jobcategories.apperentice.isset = apperenticeset;
-                            }
-                            if(apperenticerate){
-                                user.profile.jobcategories.apperentice.rate = apperenticerate;
-                            }
-                            if(address){
-                                user.profile.address = address;
-                            }
-                            if(city){
-                                user.profile.city = city;
-                            }
-                            if(haircutting){
-                                user.profile.skills.haircutting= haircutting;
-                            }
-                            if(coloring){
-                                user.profile.skills.coloring = coloring;
-                            }
-                            if(rebonding){
-                                user.profile.skills.rebonding = rebonding;
-                            }
-                            if(hairrelaxing){
-                                user.profile.skills.hairrelaxing = hairrelaxing;
-                            }
-                            if(straightening){
-                                user.profile.skills.straightening = straightening;
-                            }
-                            if(hairstyling){
-                                user.profile.skills.hairstyling = hairstyling;
-                            }
-                            if(cleansing){
-                                user.profile.skills.cleansing = cleansing;
-                            }
-                            if(scalpmassage){
-                                user.profile.skills.scalpmassage = scalpmassage;
-                            }
-                            if(oiltreatments){
-                                user.profile.skills.oiltreatments = oiltreatments;
-                            }
-                            if(haircareadvising){
-                                user.profile.skills.haircareadvising = haircareadvising;
-                            }
-                            if(haircurling){
-                                user.profile.skills.haircurling = haircurling;
-                            }
-                            if(perming){
-                                user.profile.skills.perming = perming;
-                            }
+                            if(newDescription) user.profile.description = newDescription;
+                            if(educatorset) user.profile.jobcategories.educator.isset = educatorset;
+                            if(educatorrate) user.profile.jobcategories.educator.rate = educatorrate;
+                            if(stylistset) user.profile.jobcategories.stylist.isset = stylistset;
+                            if(stylistrate) user.profile.jobcategories.stylist.rate = stylistrate;
+                            if(apperenticeset) user.profile.jobcategories.apperentice.isset = apperenticeset;
+                            if(apperenticerate) user.profile.jobcategories.apperentice.rate = apperenticerate;
+                            if(address) user.profile.address = address;
+                            if(city) user.profile.city = city;
+                            if(haircutting) user.profile.skills.haircutting= haircutting;
+                            if(coloring) user.profile.skills.coloring = coloring;
+                            if(rebonding) user.profile.skills.rebonding = rebonding;
+                            if(hairrelaxing) user.profile.skills.hairrelaxing = hairrelaxing;
+                            if(straightening) user.profile.skills.straightening = straightening;
+                            if(hairstyling) user.profile.skills.hairstyling = hairstyling;
+                            if(cleansing) user.profile.skills.cleansing = cleansing;
+                            if(scalpmassage) user.profile.skills.scalpmassage = scalpmassage;
+                            if(oiltreatments) user.profile.skills.oiltreatments = oiltreatments;
+                            if(haircareadvising) user.profile.skills.haircareadvising = haircareadvising;
+                            if(haircurling) user.profile.skills.haircurling = haircurling;
+                            if(perming) user.profile.skills.perming = perming;
 
                             user.save(function (err) {
                                 if(err){
-                                    console.log('error at b');
+                                    console.log(err);
                                 }
                                 else{
-                                    console.log('no error at b');
+                                    console.log(user._id);
+
+                                    res.json({success:true, message: 'Profile Created' , profile_id:user._id});
                                 }
                             });
                         }
                     });
-                    res.json({success:true, message: 'Profile Created'});
+                    // res.json({success:true, message: 'Profile Created'});
                 }
             });
             // res.send(req.decoded.email);
@@ -537,87 +566,41 @@ module.exports = {
                         if(!user){
                             console.log('No user found once again');
                         }else{
-                            if(newFirstname){
-                                user.firstname = newFirstname;
-                            }
-                            if(newLastname){
-                                user.lastname = newLastname;
-                            }
-                            if(newDescription){
-                                user.profile.description = newDescription;
-                            }
-                            if(educatorset){
-                                user.profile.jobcategories.educator.isset = educatorset;
-                            }
-                            if(educatorrate){
-                                user.profile.jobcategories.educator.rate = educatorrate;
-                            }
-                            if(stylistset){
-                                user.profile.jobcategories.stylist.isset = stylistset;
-                            }
-                            if(stylistrate){
-                                user.profile.jobcategories.stylist.rate = stylistrate;
-                            }
-                            if(apperenticeset){
-                                user.profile.jobcategories.apperentice.isset = apperenticeset;
-                            }
-                            if(apperenticerate){
-                                user.profile.jobcategories.apperentice.rate = apperenticerate;
-                            }
-                            if(address){
-                                user.profile.address = address;
-                            }
-                            if(city){
-                                user.profile.city = city;
-                            }
-                            if(haircutting){
-                                user.profile.skills.haircutting= haircutting;
-                            }
-                            if(coloring){
-                                user.profile.skills.coloring = coloring;
-                            }
-                            if(rebonding){
-                                user.profile.skills.rebonding = rebonding;
-                            }
-                            if(hairrelaxing){
-                                user.profile.skills.hairrelaxing = hairrelaxing;
-                            }
-                            if(straightening){
-                                user.profile.skills.straightening = straightening;
-                            }
-                            if(hairstyling){
-                                user.profile.skills.hairstyling = hairstyling;
-                            }
-                            if(cleansing){
-                                user.profile.skills.cleansing = cleansing;
-                            }
-                            if(scalpmassage){
-                                user.profile.skills.scalpmassage = scalpmassage;
-                            }
-                            if(oiltreatments){
-                                user.profile.skills.oiltreatments = oiltreatments;
-                            }
-                            if(haircareadvising){
-                                user.profile.skills.haircareadvising = haircareadvising;
-                            }
-                            if(haircurling){
-                                user.profile.skills.haircurling = haircurling;
-                            }
-                            if(perming){
-                                user.profile.skills.perming = perming;
-                            }
-
+                            if(newFirstname) user.firstname = newFirstname;
+                            if(newLastname) user.lastname = newLastname;
+                            if(newDescription) user.profile.description = newDescription;
+                            if(educatorset) user.profile.jobcategories.educator.isset = educatorset;
+                            if(educatorrate) user.profile.jobcategories.educator.rate = educatorrate;
+                            if(stylistset) user.profile.jobcategories.stylist.isset = stylistset;
+                            if(stylistrate) user.profile.jobcategories.stylist.rate = stylistrate;
+                            if(apperenticeset) user.profile.jobcategories.apperentice.isset = apperenticeset;
+                            if(apperenticerate) user.profile.jobcategories.apperentice.rate = apperenticerate;
+                            if(address) user.profile.address = address;
+                            if(city)  user.profile.city = city;
+                            if(haircutting) user.profile.skills.haircutting= haircutting;
+                            if(coloring) user.profile.skills.coloring = coloring;
+                            if(rebonding) user.profile.skills.rebonding = rebonding;
+                            if(hairrelaxing) user.profile.skills.hairrelaxing = hairrelaxing;
+                            if(straightening) user.profile.skills.straightening = straightening;
+                            if(hairstyling)  user.profile.skills.hairstyling = hairstyling;
+                            if(cleansing)  user.profile.skills.cleansing = cleansing;
+                            if(scalpmassage) user.profile.skills.scalpmassage = scalpmassage;
+                            if(oiltreatments) user.profile.skills.oiltreatments = oiltreatments;
+                            if(haircareadvising)  user.profile.skills.haircareadvising = haircareadvising;
+                            if(haircurling) user.profile.skills.haircurling = haircurling;
+                            if(perming) user.profile.skills.perming = perming;
                             user.save(function (err) {
                                 if(err){
                                     console.log('error at b');
                                 }
                                 else{
                                     console.log('no error at b');
+                                    res.json({success:true, message: 'Profile Updated', profile_id:user._id});
                                 }
                             });
                         }
                     });
-                    res.json({success:true, message: 'Profile Updated'});
+                    // res.json({success:true, message: 'Profile Updated'});
                 }
             });
         });
@@ -652,6 +635,8 @@ module.exports = {
         });
 
         router.post('/me', function (req,res) {
+            var s = req.decoded;
+            // console.log(s._id);
             res.send(req.decoded);
         });
         return router;

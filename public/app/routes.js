@@ -15,15 +15,20 @@ var app = angular.module('appRoutes', ['ngRoute'])
         .when('/about',{
             templateUrl : 'app/views/pages/about.html'
         })
+        // .when('/search',{
+        //     templateUrl : 'app/views/pages/users/salon/search.html',
+        //     controller: 'searchCtrl',
+        //     controllerAs: 'search'
+        // })
         .when('/search',{
             templateUrl : 'app/views/pages/users/salon/search.html',
-            controller: 'searchCtrl',
-            controllerAs: 'search'
+            controller: 'searchStylistCtrl',
+            controllerAs: 'searchStylist'
         })
         .when('/welcome', {
             templateUrl : 'app/views/pages/users/welcome_signin.html',
-            controller: 'emailCtrl',
-            controllerAs: 'email'
+            // controller: 'emailCtrl',
+            // controllerAs: 'email'
         })
         .when('/signin',{
             templateUrl : 'app/views/pages/users/signin.html',

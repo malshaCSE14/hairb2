@@ -2,13 +2,14 @@
     <div class="hero-section">
         <div class="container">
             <div class="row">
-                <!--<form method="post" action="" ng-submit="search.searchStylist(searchData);">-->
+                <!--<form id="bootstrapTagsInputForm" method="post" class="form-horizontal" ng-submit="search.searchStylist(searchData);">-->
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 
                     <h1 class="hero-title">Hire your favourite stylist</h1>
                     <p class="hero-text"><strong>Your Type. Your Style. Your Color.</strong> </p>
 
                     <a href="/search" class="btn btn-default">Search</a>
+                    <input type="hidden" ng-model="search.searchData.true" value="true">
                     <!--<div class="form-group">-->
                         <!--<button id="singlebutton" name="singlebutton" class="btn btn-default">Search</button>-->
                     <!--</div>-->
