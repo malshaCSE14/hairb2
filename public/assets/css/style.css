@@ -593,11 +593,16 @@ address { margin-bottom: 20px; font-style: normal; line-height: 1.42857143; }
 .post-img { position: relative; height: auto; width: auto; }
 .post-img img{border-radius: 10px; width: 100%;}
 .post-title { }
-.post-content {padding-top: 40px; padding-right: 40px;}
+.post-content {padding-top: 30px; padding-right: 40px;}
+
+.desc p{
+    height:43px;
+    line-height:20px; /* Height / no. of lines to display */
+    overflow:hidden;  }
 .post-header { }
 
 /*-------- Post meta --------*/
-.meta { font-size: 12px; text-transform: uppercase; margin-bottom: 20px; font-family: 'Montserrat', sans-serif;}
+.meta { font-size: 14px; /*text-transform: uppercase;*/ margin-bottom: 10px; font-family: 'Montserrat', sans-serif;}
 .meta-date { }
 .meta-user { }
 .meta-comment { }
@@ -714,7 +719,7 @@ ul.widget-recent-post { }
 .team-content { text-align: center; }
 .team-title { margin-bottom: 0px; }
 .team-name { }
-.team-meta { text-transform: uppercase; font-size: 12px; color: #aa9144; font-weight: 500; letter-spacing: 1px; }
+.team-meta { text-transform: uppercase; font-size: 14px; color: #aa9144; font-weight: 500; letter-spacing: 1px; }
 .team-designation { }
 
 /*----- Comment Post -----*/
@@ -729,7 +734,7 @@ ul.widget-recent-post { }
 .comment-header { margin-bottom: 0px; }
 .user-title { font-size: 15px; color: #474747; margin-bottom: 10px; font-weight: 500; }
 .comment-meta { }
-.comment-meta-date { color: #98989c; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+.comment-meta-date { color: #98989c; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
 .comment-content { color: #6f6f6f; margin-bottom: 20px; }
 .reply { }
 

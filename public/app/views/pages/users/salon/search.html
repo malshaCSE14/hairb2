@@ -64,10 +64,25 @@
                                     <label class="control-label"  for="city">city</label>
                                     <select ng-model="searchStylist.searchData.city" class="form-control" id="city">
                                         <option value="">Any</option>
+                                        <option value="Canberra">Canberra</option>
                                         <option value="Sydney">Sydney</option>
-                                        <option value="Melbourne">Melbourne</option>
                                         <option value="Perth">Perth</option>
                                         <option value="Brisbane">Brisbane</option>
+                                        <option value="West Island">West Island</option>
+                                        <option value="Kingston">Kingston</option>
+                                        <option value="Darwin">Darwin</option>
+                                        <option value="Adelaide">Adelaide</option>
+                                        <option value="Hobart">Hobart</option>
+                                        <option value="Melbourne">Melbourne</option>
+                                        <option value="Wollongong">Wollongong</option>
+                                        <option value="Wollongong">Wollongong</option>
+                                        <option value="Ararat">Ararat</option>
+                                        <option value="Bairnsdale">Bairnsdale</option>
+                                        <option value="Bunbury">Bunbury</option>
+                                        <option value="Rockingham">Rockingham</option>
+                                        <option value="Hamilton">Hamilton</option>
+                                        <option value="Bendigo">Bendigo</option>
+                                        <option value="Port Augusta">Port Augusta</option>
                                     </select>
                                 </div>
                                 <!--availability-->
@@ -153,9 +168,11 @@
                                                         <p class="meta" ng-if="each_stylist.profile.jobcategories.stylist.isset"><strong>Stylist </strong> Rate: {{each_stylist.profile.jobcategories.stylist.rate}}<span class=""></span> </p>
                                                         <p class="meta" ng-if="each_stylist.profile.jobcategories.apperentice.isset"><strong>Apprentice </strong>Rate: {{each_stylist.profile.jobcategories.apperentice.rate}} <span class=""></span> </p>
                                                         <p class="meta"><span class="meta-author">City: {{each_stylist.profile.city}}</span></p>
-                                                        <p>Description: {{each_stylist.profile.description}}</p>
+                                                        <div class="desc">
+                                                            <p>Description: {{each_stylist.profile.description}}</p>
+                                                        </div>
                                                         <form>
-                                                            <a href="/book-stylist/{{each_stylist._id}}" class="btn btn-default">Book Now</a>
+                                                            <span ng-if="main._id!=each_stylist._id"><a href="/book-stylist/{{each_stylist._id}}" class="btn btn-default">Book Now</a></span>
                                                         </form>
                                                             <a href="/stylist-public-profile/{{each_stylist._id}}" class="btn btn-default">Profile</a>
                                                     </div>
